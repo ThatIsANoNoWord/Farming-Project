@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     Vector2 moveDirection;
     Rigidbody2D rb;
+    HELD playerHolding;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,7 +34,24 @@ public class PlayerController : MonoBehaviour
 
     void Interact(InputAction.CallbackContext context)
     {
+        
+    }
 
+    void ChangeHeld(HELD newHeld)
+    {
+        playerHolding = newHeld;
+    }
+
+    public void TogglePlayerControl()
+    {
+        if(controlInput.Player.enabled)
+        {
+            controlInput.Player.Disable();
+        }
+        else
+        {
+            controlInput.Player.Enable();
+        }
     }
 
     // Update is called once per frame
@@ -41,4 +59,8 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = moveDirection.normalized * Time.fixedDeltaTime * movementSpeed;
     }
+}
+
+public enum HELD {
+    NOTHING, SEED1, SEED2, SEED3, SEED4, SEED5, COMPOST
 }
