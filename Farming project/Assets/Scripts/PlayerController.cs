@@ -7,9 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     PlayerControl controlInput;
     public float movementSpeed;
+    public float interactCooldown;
     Vector2 moveDirection;
     Rigidbody2D rb;
     HELD playerHolding;
+    Interactable closestInteract;
+    float spamPrevention;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour
         controlInput.Player.Movement.canceled += StopMove;
         controlInput.Player.Interact.performed += Interact;
         rb = GetComponent<Rigidbody2D>();
+        spamPrevention = 0;
     }
 
     void MoveUpdate(InputAction.CallbackContext context)
@@ -34,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     void Interact(InputAction.CallbackContext context)
     {
-        
+        closestInteract.OnInteract();
     }
 
     void ChangeHeld(HELD newHeld)
@@ -42,6 +46,11 @@ public class PlayerController : MonoBehaviour
         playerHolding = newHeld;
     }
 
+    public void ChangeClosestInteract(Interactable newInteract)
+    {
+        if (interactCooldown > 0) return;
+        closestInteract = newInteract;
+    }
     public void TogglePlayerControl()
     {
         if(controlInput.Player.enabled)
@@ -58,9 +67,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = moveDirection.normalized * Time.fixedDeltaTime * movementSpeed;
+        spamPrevention = Mathf.Clamp(spamPrevention - Time.fixedDeltaTime, 0, float.MaxValue);
     }
 }
 
 public enum HELD {
-    NOTHING, SEED1, SEED2, SEED3, SEED4, SEED5, COMPOST
+    NOTHING, SEED1, SEED2, SEED3, SEED4, COMPOST
 }

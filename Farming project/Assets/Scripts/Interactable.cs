@@ -8,4 +8,12 @@ public class Interactable : MonoBehaviour
     {
 
     }
+    public virtual void OnPlayerClose()
+    {
+
+    }
+    public virtual void OnPlayerFar()
+    {
+
+    }
 }
