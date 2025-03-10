@@ -6,7 +6,7 @@ public static class PlantDatabase
 {
     // This dictionary will store the plant GameObjects by their plant name
     private static Dictionary<string, Plant> allPlants = new();
-
+    
     public static void Initialize()
     {
         // Load all plant data
@@ -19,7 +19,7 @@ public static class PlantDatabase
             allPlants.Add(plant.name, plant);
         }
     }
-
+    
     // Get the GameObject for the specified plant
     public static Plant GetPlant(string plantName)
     {

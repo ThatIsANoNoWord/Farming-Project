@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     HELD playerHolding;
     Interactable closestInteract;
+    PlantData heldPlantData;
     float spamPrevention;
 
     // Start is called before the first frame update
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     void Interact(InputAction.CallbackContext context)
     {
-        closestInteract.OnInteract();
+        closestInteract.OnInteract(playerHolding, heldPlantData);
     }
 
     void ChangeHeld(HELD newHeld)
@@ -72,5 +73,5 @@ public class PlayerController : MonoBehaviour
 }
 
 public enum HELD {
-    NOTHING, SEED1, SEED2, SEED3, SEED4, COMPOST
+    NOTHING, SEED, COMPOST
 }
