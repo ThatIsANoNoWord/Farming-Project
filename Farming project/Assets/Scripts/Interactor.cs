@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
+    public GameObject interactIndicator;
+    public float indicatorUpDist;
     PlayerController playerScript;
     Interactable[] interactables;
     List<GameObject> interactObjects;
@@ -13,7 +15,7 @@ public class Interactor : MonoBehaviour
     private void Start()
     {
         playerScript = GetComponentInParent<PlayerController>();
-        interactables = GetComponents<Interactable>();
+        interactables = FindObjectsByType<Interactable>(FindObjectsSortMode.None);
         interactObjects = new List<GameObject>();
         foreach (Interactable interactable in interactables)
         {
@@ -26,23 +28,49 @@ public class Interactor : MonoBehaviour
         {
             return;
         }
+        Debug.Log(collision.gameObject);
+        if (closest == null)
+        {
+            closest = collision.gameObject.GetComponent<Interactable>();
+            closest.OnPlayerClose();
+            interactIndicator.SetActive(true);
+            interactIndicator.transform.position = closest.transform.position + Vector3.up * indicatorUpDist;
+            playerScript.ChangeClosestInteract(closest);
+            return;
+        }
         if (Vector2.Distance(gameObject.transform.position, collision.transform.position) < closestDistance)
         {
             closest.OnPlayerFar();
             closest = gameObject.GetComponent<Interactable>();
             closestDistance = Vector2.Distance(gameObject.transform.position, collision.transform.position);
             closest.OnPlayerClose();
+            interactIndicator.SetActive(true);
+            interactIndicator.transform.position = closest.transform.position + Vector3.up * indicatorUpDist;
+            playerScript.ChangeClosestInteract(closest);
+            return;
         }
         closestDistance = Vector2.Distance(gameObject.transform.position, closest.transform.position);
+        interactIndicator.SetActive(true);
+        interactIndicator.transform.position = closest.transform.position + Vector3.up * indicatorUpDist;
+        playerScript.ChangeClosestInteract(closest);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (closest == null)
+        {
+            closest = null;
+            closestDistance = 0;
+            interactIndicator.SetActive(false);
+            playerScript.ChangeClosestInteract(null);
+        }
         if (collision.gameObject == closest.gameObject)
         {
             closest.OnPlayerFar();
             closest = null;
             closestDistance = 0;
+            interactIndicator.SetActive(false);
+            playerScript.ChangeClosestInteract(null);
         }
     }
 }

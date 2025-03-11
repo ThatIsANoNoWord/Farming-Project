@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fae0bba9481fb449aa1ce6a07ed05f, type: 3}
   m_Name: Cassava
   m_EditorClassIdentifier: 
+  seedSprite: {fileID: 21300000, guid: e6310679b818eee4a9352a6f1b70e5fc, type: 3}
   growthStages:
   - {fileID: 21300000, guid: e6310679b818eee4a9352a6f1b70e5fc, type: 3}
   - {fileID: 21300000, guid: a3aac8054d0334b4bb828654d924ec59, type: 3}
   produceCount: 1
   sellPrice: 40
-  buySeedPrice: 45
+  buySeedPrice: 20
   requiredSoilQuality: 1

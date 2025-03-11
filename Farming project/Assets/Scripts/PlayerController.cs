@@ -34,22 +34,30 @@ public class PlayerController : MonoBehaviour
     void StopMove(InputAction.CallbackContext context)
     {
         moveDirection = Vector2.zero;
-        Debug.Log("E");
     }
 
     void Interact(InputAction.CallbackContext context)
     {
+        if (spamPrevention > 0) return;
+        if (closestInteract == null) return;
         closestInteract.OnInteract(playerHolding, heldPlantData);
+        spamPrevention = interactCooldown;
     }
 
-    void ChangeHeld(HELD newHeld)
+    public void ChangeHeld(HELD newHeld, PlantData seedHeld)
     {
         playerHolding = newHeld;
+        if (playerHolding == HELD.SEED)
+        {
+            heldPlantData = seedHeld;
+        } else
+        {
+            heldPlantData = null;
+        }
     }
 
     public void ChangeClosestInteract(Interactable newInteract)
     {
-        if (interactCooldown > 0) return;
         closestInteract = newInteract;
     }
     public void TogglePlayerControl()
@@ -61,6 +69,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             controlInput.Player.Enable();
+        }
+    }
+    public void SetPlayerControl(bool set)
+    {
+        if (controlInput.Player.enabled != set)
+        {
+            TogglePlayerControl();
         }
     }
 

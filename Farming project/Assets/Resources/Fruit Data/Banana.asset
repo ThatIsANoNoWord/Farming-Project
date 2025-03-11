@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fae0bba9481fb449aa1ce6a07ed05f, type: 3}
   m_Name: Banana
   m_EditorClassIdentifier: 
+  seedSprite: {fileID: 21300000, guid: 77c7a6daddc67d04d99d3fcc13fe7f2a, type: 3}
   growthStages:
   - {fileID: 21300000, guid: 77c7a6daddc67d04d99d3fcc13fe7f2a, type: 3}
   - {fileID: 21300000, guid: 2f0fa48b99028034b9e6d35a08f25df4, type: 3}
   produceCount: 1
   sellPrice: 100
-  buySeedPrice: 160
+  buySeedPrice: 50
   requiredSoilQuality: 2

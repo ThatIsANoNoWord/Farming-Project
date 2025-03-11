@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeldUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextMeshProUGUI quantText;
+    public Image Image;
+    public void ChangeHeld(Sprite data, int count)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Image.sprite = data;
+        quantText.text = count.ToString();
     }
 }
