@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlantData : ScriptableObject
 {
     public Sprite seedSprite;
+    public Sprite cropSprite;
     public Sprite[] growthStages;  // List of sprites corresponding to the growth stages
     // We can use the list of sprites to determine how many rounds to grow.
     public int produceCount;

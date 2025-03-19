@@ -8,9 +8,11 @@ public class SeedUI : MonoBehaviour
 {
     public Sprite noSprite;
     public Image[] holdSeedImages;
-    public Image[] holdSeedImages2;
-    public Image[] holdPlantImages;
     public TextMeshProUGUI[] seedQuant;
+    public GameObject purchasePrefab;
+    public GameObject equipSeedPrefab;
+    GameObject[] purchaseInstances;
+    GameObject[] equipSeedInstances;
     PlantData[] plantSeedList;
     PlayerController playerController;
     GameManager gameManager;
@@ -18,6 +20,9 @@ public class SeedUI : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         gameManager = FindObjectOfType<GameManager>();
+
+        purchaseInstances = new GameObject[gameManager.GetPlantQuant()];
+        equipSeedInstances = new GameObject[gameManager.GetPlantQuant()];
     }
     public void PurchaseSeed(int seedNum)
     {
@@ -37,24 +42,11 @@ public class SeedUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void UpdateData(Quant[] listToUpdate)
+    public void UpdateData(QuantList listToUpdate)
     {
         for(int i = 0; i < holdSeedImages.Length; i++)
         {
-            if (i < listToUpdate.Length)
-            {
-                holdSeedImages[i].sprite = listToUpdate[i].plant.seedSprite;
-                holdSeedImages2[i].sprite = listToUpdate[i].plant.seedSprite;
-                holdPlantImages[i].sprite = listToUpdate[i].plant.growthStages[listToUpdate[i].plant.growthStages.Length - 1];
-                seedQuant[i].text = listToUpdate[i].seedQuantity.ToString();
-            }
-            else
-            {
-                holdSeedImages[i].sprite = noSprite;
-                holdSeedImages2[i].sprite = noSprite;
-                holdPlantImages[i].sprite = noSprite;
-                seedQuant[i].text = "0";
-            }
+            // Do stuff
         }
     }
 }

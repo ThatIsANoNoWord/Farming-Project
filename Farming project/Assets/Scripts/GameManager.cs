@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour, ITurnable
     public PlantData[] plantDataTypes;
     MoneyUI moneyUI;
     SeedUI seedUI;
-    Quant[] amountOfSeeds;
+    QuantList amountOfSeeds;
     public GameObject gameOverUI;
 
     // Awake is called before anything
@@ -25,14 +25,10 @@ public class GameManager : MonoBehaviour, ITurnable
         seedUI = FindObjectOfType<SeedUI>();
         playerMoneyQuantity = 0;
         ChangeMoney(0);
-        amountOfSeeds = new Quant[plantDataTypes.Length];
-        for (int i = 0; i < plantDataTypes.Length; i++)
-        {
-            amountOfSeeds[i] = new Quant(0, 0, plantDataTypes[i]);
-        }
-        amountOfSeeds[0].seedQuantity = 6;
-        turnNumber = 1;
         seedUI.GiveSeedInfo(plantDataTypes);
+        amountOfSeeds = new QuantList(plantDataTypes);
+        amountOfSeeds.IncreaseCap(plantDataTypes[0], 3);
+        turnNumber = 1;
         seedUI.UpdateData(amountOfSeeds);
     }
 
@@ -47,6 +43,13 @@ public class GameManager : MonoBehaviour, ITurnable
         }
     }
 
+    public int GetPlantQuant()
+    {
+        return plantDataTypes.Length;
+    }
+
+    // Tries to purchase the seed for the player.
+    // Returns 0 on success and -1 on failure.
     public int TryPurchaseSeed(PlantData seedPurchased)
     {
         if (playerMoneyQuantity < seedPurchased.buySeedPrice)
@@ -54,18 +57,9 @@ public class GameManager : MonoBehaviour, ITurnable
             return -1;
         }
         playerMoneyQuantity -= seedPurchased.buySeedPrice;
-        foreach (Quant stuff in amountOfSeeds)
-        {
-            if (stuff.plant == seedPurchased)
-            {
-                stuff.seedQuantity++;
-                seedUI.UpdateData(amountOfSeeds);
-                return 0;
-            }
-        }
-
-
-        return -1;
+        amountOfSeeds.IncreaseCap(seedPurchased, 1);
+        seedUI.UpdateData(amountOfSeeds);
+        return 0;
     }
 
     public void Turn()
@@ -78,16 +72,73 @@ public class GameManager : MonoBehaviour, ITurnable
     }
 }
 
-public class Quant
+public class QuantList
 {
-    public int seedQuantity;
-    public int cropQuantity;
-    public PlantData plant;
+    Quant[] quantList;
+
+    public QuantList(PlantData[] plantDatas)
+    {
+        quantList = new Quant[plantDatas.Length];
+        for (int i = 0; i < quantList.Length; i++)
+        {
+            quantList[i] = new Quant(0, 0, plantDatas[i]);
+        }
+    }
+
+    public void ResetValues()
+    {
+        for (int i = 0; i < quantList.Length; i++)
+        {
+            quantList[i].ResetCurr();
+        }
+    }
+
+    public void IncreaseCap(PlantData plant, int plusCap)
+    {
+        for (int i = 0; i < quantList.Length; i++)
+        {
+            if (quantList[i].MatchPlant(plant))
+            {
+                quantList[i].IncreaseCapacity(plusCap);
+                return;
+            }
+        }
+    }
+}
+
+class Quant
+{
+    int seedTotQuantity;
+    int seedCurrQuantity;
+    int cropQuantity;
+    PlantData plant;
 
     public Quant(int quant, int cropQuant, PlantData plant)
     {
-        seedQuantity = quant;
+        seedTotQuantity = quant;
+        seedCurrQuantity = quant;
         cropQuantity = cropQuant;
         this.plant = plant;
+    }
+
+    public void ResetCurr()
+    {
+        seedCurrQuantity = seedTotQuantity;
+    }
+
+    public int GetCurrQuant()
+    {
+        return seedCurrQuantity;
+    }
+
+    public void IncreaseCapacity(int plusCapacity)
+    {
+        seedTotQuantity += plusCapacity;
+        seedCurrQuantity += plusCapacity;
+    }
+
+    public bool MatchPlant(PlantData plant)
+    {
+        return plant == this.plant;
     }
 }
