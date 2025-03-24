@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Fruit")]
 public class PlantData : ScriptableObject
 {
+    public string cropName;
     public Sprite seedSprite;
     public Sprite cropSprite;
     public Sprite[] growthStages;  // List of sprites corresponding to the growth stages
@@ -11,4 +12,10 @@ public class PlantData : ScriptableObject
     public int sellPrice;
     public int buySeedPrice;
     public SoilQuality requiredSoilQuality;
+
+    public override string ToString()
+    {
+        return cropName + ": sell for " + sellPrice + " and buys seeds for " + buySeedPrice;
+        // return base.ToString();
+    }
 }

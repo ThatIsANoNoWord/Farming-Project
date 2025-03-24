@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fae0bba9481fb449aa1ce6a07ed05f, type: 3}
   m_Name: Mango
   m_EditorClassIdentifier: 
+  cropName: Mango
   seedSprite: {fileID: 21300000, guid: eeb9cc2761487ee498a4fe05700fb7d8, type: 3}
+  cropSprite: {fileID: 21300000, guid: a4244dc603d46a2409243f29085f91a1, type: 3}
   growthStages:
   - {fileID: 21300000, guid: eeb9cc2761487ee498a4fe05700fb7d8, type: 3}
   - {fileID: 21300000, guid: a4244dc603d46a2409243f29085f91a1, type: 3}

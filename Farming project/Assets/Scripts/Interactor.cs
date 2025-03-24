@@ -28,7 +28,6 @@ public class Interactor : MonoBehaviour
         {
             return;
         }
-        Debug.Log(collision.gameObject);
         if (closest == null)
         {
             closest = collision.gameObject.GetComponent<Interactable>();
@@ -41,7 +40,7 @@ public class Interactor : MonoBehaviour
         if (Vector2.Distance(gameObject.transform.position, collision.transform.position) < closestDistance)
         {
             closest.OnPlayerFar();
-            closest = gameObject.GetComponent<Interactable>();
+            closest = collision.gameObject.GetComponent<Interactable>();
             closestDistance = Vector2.Distance(gameObject.transform.position, collision.transform.position);
             closest.OnPlayerClose();
             interactIndicator.SetActive(true);
@@ -63,6 +62,14 @@ public class Interactor : MonoBehaviour
             closestDistance = 0;
             interactIndicator.SetActive(false);
             playerScript.ChangeClosestInteract(null);
+        }
+        if (closest.gameObject == null)
+        {
+            return;
+        }
+        if (collision.gameObject == null)
+        {
+            return;
         }
         if (collision.gameObject == closest.gameObject)
         {

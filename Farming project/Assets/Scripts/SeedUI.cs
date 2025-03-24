@@ -7,30 +7,35 @@ using TMPro;
 public class SeedUI : MonoBehaviour
 {
     public Sprite noSprite;
-    public Image[] holdSeedImages;
-    public TextMeshProUGUI[] seedQuant;
-    public GameObject purchasePrefab;
-    public GameObject equipSeedPrefab;
-    GameObject[] purchaseInstances;
-    GameObject[] equipSeedInstances;
+    public Image seedPurchImage;
+    public Image cropPurchImage;
+    public Image holdSeedImage;
+    public Image holdCropImage;
+    public TextMeshProUGUI seedQuant;
+    public TextMeshProUGUI seedPrice;
+    QuantList crops;
     PlantData[] plantSeedList;
     PlayerController playerController;
     GameManager gameManager;
+    int currentSeedPurch = 0;
+    int currentSeedHold = 0;
     private void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         gameManager = FindObjectOfType<GameManager>();
 
-        purchaseInstances = new GameObject[gameManager.GetPlantQuant()];
-        equipSeedInstances = new GameObject[gameManager.GetPlantQuant()];
+        crops = gameManager.GetPlantQuant();
+        plantSeedList = gameManager.GetSeedList();
+        UpdateData();
     }
-    public void PurchaseSeed(int seedNum)
+    public void PurchaseSeed()
     {
-        gameManager.TryPurchaseSeed(plantSeedList[seedNum]);
+        gameManager.TryPurchaseSeed(plantSeedList[currentSeedPurch]);
+        UpdateData();
     }
-    public void HoldSeed(int seedNum)
+    public void HoldSeed()
     {
-        playerController.ChangeHeld(HELD.SEED, plantSeedList[seedNum]);
+        playerController.ChangeHeld(HELD.SEED, plantSeedList[currentSeedHold]);
     }
     public void GiveSeedInfo(PlantData[] seedInfo)
     {
@@ -39,14 +44,44 @@ public class SeedUI : MonoBehaviour
     public void ReturnControl()
     {
         playerController.SetPlayerControl(true);
+        currentSeedPurch = 0;
+        currentSeedHold = 0;
+        UpdateData();
         gameObject.SetActive(false);
     }
-
-    public void UpdateData(QuantList listToUpdate)
+    public void IncrementSeedPurch()
     {
-        for(int i = 0; i < holdSeedImages.Length; i++)
-        {
-            // Do stuff
-        }
+        currentSeedPurch++;
+        currentSeedPurch %= plantSeedList.Length;
+        UpdateData();
+    }
+    public void DecrementSeedPurch()
+    {
+        currentSeedPurch--;
+        currentSeedPurch %= plantSeedList.Length;
+        UpdateData();
+    }
+    public void IncrementSeedHold()
+    {
+        currentSeedHold++;
+        currentSeedHold %= plantSeedList.Length;
+        UpdateData();
+    }
+    public void DecrementSeedHold()
+    {
+        currentSeedHold--;
+        currentSeedHold %= plantSeedList.Length;
+        UpdateData();
+    }
+    public void UpdateData()
+    {
+        seedPurchImage.sprite = plantSeedList[currentSeedPurch].seedSprite;
+        cropPurchImage.sprite = plantSeedList[currentSeedPurch].cropSprite;
+        holdSeedImage.sprite = plantSeedList[currentSeedHold].seedSprite;
+        holdCropImage.sprite = plantSeedList[currentSeedHold].cropSprite;
+
+        seedPrice.text = "$" + plantSeedList[currentSeedPurch].buySeedPrice.ToString();
+        Debug.Log(crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]));
+        seedQuant.text = crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]).ToString();
     }
 }

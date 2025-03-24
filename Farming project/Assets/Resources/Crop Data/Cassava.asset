@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7fae0bba9481fb449aa1ce6a07ed05f, type: 3}
-  m_Name: Banana
+  m_Name: Cassava
   m_EditorClassIdentifier: 
-  seedSprite: {fileID: 21300000, guid: 77c7a6daddc67d04d99d3fcc13fe7f2a, type: 3}
+  cropName: Cassava
+  seedSprite: {fileID: 21300000, guid: e6310679b818eee4a9352a6f1b70e5fc, type: 3}
+  cropSprite: {fileID: 21300000, guid: a3aac8054d0334b4bb828654d924ec59, type: 3}
   growthStages:
-  - {fileID: 21300000, guid: 77c7a6daddc67d04d99d3fcc13fe7f2a, type: 3}
-  - {fileID: 21300000, guid: 2f0fa48b99028034b9e6d35a08f25df4, type: 3}
+  - {fileID: 21300000, guid: e6310679b818eee4a9352a6f1b70e5fc, type: 3}
+  - {fileID: 21300000, guid: a3aac8054d0334b4bb828654d924ec59, type: 3}
   produceCount: 1
-  sellPrice: 100
-  buySeedPrice: 50
-  requiredSoilQuality: 2
+  sellPrice: 40
+  buySeedPrice: 20
+  requiredSoilQuality: 1
