@@ -10,9 +10,11 @@ public class PlantingSpot : Interactable, ITurnable
     SpotStates spotCurrState;
     Plot parentPlot;
     int currentGrowthStage;
+    PlayerController playerController;
 
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         growingSprite = gameObject.GetComponent<SpriteRenderer>();
         growingPlant = null;
         spotCurrState = SpotStates.Empty;
@@ -22,18 +24,20 @@ public class PlantingSpot : Interactable, ITurnable
 
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
-        if (playerHoldState == HELD.COMPOST)
-        {
-            // That's stuff with the plot. Call the plot.
-        }
         if (spotCurrState == SpotStates.Empty)
         {
             switch (playerHoldState)
             {
                 case HELD.NOTHING:
-                    // Make a message that the player needs seeds to plant
+                    // Do nothing
                     return;
                 case HELD.SEED:
+                    return;
+                case HELD.COMPOST:
+                    // Compost time
+                    return;
+                case HELD.CROP:
+                    // Do nothing
                     return;
                 default:
                     Debug.LogError("Impossible to reach here");
@@ -59,7 +63,7 @@ public class PlantingSpot : Interactable, ITurnable
 
     void GrowPlant()
     {
-        if ((int)parentPlot.GetQuality() < (int)growingPlant.requiredSoilQuality)
+        if (parentPlot.GetQuality() < (int)growingPlant.requiredSoilQuality)
         {
             EmptyPlot();
             return;
@@ -87,6 +91,11 @@ public class PlantingSpot : Interactable, ITurnable
                 Debug.LogError("Impossible to reach here");
                 return;
         }
+    }
+
+    public int Prio()
+    {
+        return 0;
     }
 }
 

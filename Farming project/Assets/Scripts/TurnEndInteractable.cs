@@ -18,6 +18,7 @@ public class TurnEndInteractable : Interactable
         {
             allTurnEnd.Add(temp);
         }
+        allTurnEnd.Sort((x, y) => x.Prio() - y.Prio());
         playerController = FindObjectOfType<PlayerController>();
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
@@ -25,9 +26,10 @@ public class TurnEndInteractable : Interactable
         foreach(ITurnable runable in allTurnEnd)
         {
             runable.Turn();
-            screenAnimator.Play("FadeAndReturn");
-            playerController.SetPlayerControl(false);
         }
+        screenAnimator.Play("FadeAndReturn");
+        playerController.SetPlayerControl(false);
+        StartCoroutine(WaitAndGiveBack());
     }
 
     IEnumerator WaitAndGiveBack()

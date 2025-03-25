@@ -69,4 +69,8 @@ public class CompostUI : MonoBehaviour, ITurnable
         allocated = 0;
         UpdateData();
     }
+    public int Prio()
+    {
+        return 0;
+    }
 }

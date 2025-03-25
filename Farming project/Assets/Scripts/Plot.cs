@@ -55,6 +55,9 @@ public class Plot : MonoBehaviour, ITurnable
     public void Turn()
     {
         UpdatePlotQuality(pendingOrganicMatter);
-        pendingOrganicMatter = 0;
+    }
+    public int Prio()
+    {
+        return 0;
     }
 }

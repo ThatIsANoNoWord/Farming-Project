@@ -37,4 +37,8 @@ public class Plant : MonoBehaviour, ITurnable
     public bool isFullyGrown() {
         return currentGrowthStage == growthStages.Length - 1;
     }
+    public int Prio()
+    {
+        return 0;
+    }
 }

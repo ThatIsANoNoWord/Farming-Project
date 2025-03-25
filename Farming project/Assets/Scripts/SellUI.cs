@@ -59,4 +59,8 @@ public class SellUI : MonoBehaviour, ITurnable
         gameManager.ChangeMoney(gains);
         UpdateData();
     }
+    public int Prio()
+    {
+        return 0;
+    }
 }

@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour, ITurnable
         // PlantDatabase.Initialize();
         cropList = new QuantList(plantDataTypes);
         cropList.IncreaseCap(plantDataTypes[0], 3);
-        Debug.Log("Yehaw");
-        Debug.Log(cropList);
     }
     // Start is called before the first frame update
     void Start()
@@ -86,6 +84,10 @@ public class GameManager : MonoBehaviour, ITurnable
             taxText.text = "-$" + initialLoss;
             taxText.gameObject.SetActive(false);
         }
+    }
+    public int Prio()
+    {
+        return -99;
     }
 }
 
