@@ -19,5 +19,9 @@ public class HeldUI : MonoBehaviour
     {
         ChangeHeld(null, 0);
     }
+    public Sprite CurrentSprite()
+    {
+        return Image.sprite;
+    }
 }
     

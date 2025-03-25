@@ -9,7 +9,7 @@ public class Plot : MonoBehaviour, ITurnable
     public Sprite[] qualitySprites;
     private SpriteRenderer spriteRenderer;
     private int pendingOrganicMatter;
-    private bool Active;
+    public bool active;
 
     // Start is called before the first frame update
     void Start()

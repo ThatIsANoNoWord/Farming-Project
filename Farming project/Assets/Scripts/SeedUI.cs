@@ -33,9 +33,17 @@ public class SeedUI : MonoBehaviour
         gameManager.TryPurchaseSeed(plantSeedList[currentSeedPurch]);
         UpdateData();
     }
+
+    // Player holds nothing if they are already holding the same seed type
+    // Otherwise hold the seed type
     public void HoldSeed()
     {
-        playerController.ChangeHeld(HELD.SEED, plantSeedList[currentSeedHold], crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]));
+        if (playerController.GetHeld() == HELD.SEED && playerController.GetHeldPlantData() == plantSeedList[currentSeedHold].seedSprite)
+        {
+            playerController.HoldNothing();
+            return;
+        }
+        playerController.ChangeHeld(HELD.SEED, plantSeedList[currentSeedHold], plantSeedList[currentSeedHold].seedSprite, crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]));
     }
     public void GiveSeedInfo(PlantData[] seedInfo)
     {

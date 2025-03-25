@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeedInteractable : Interactable
+public class UIActivatorInteractable : Interactable
 {
     public GameObject seedUI;
     PlayerController playerController;

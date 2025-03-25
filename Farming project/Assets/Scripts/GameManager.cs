@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Xml.Linq;
 
 public class GameManager : MonoBehaviour, ITurnable
 {
 
     int playerMoneyQuantity;
     int turnNumber;
+    public Sprite compostSprite;
     public PlantData[] plantDataTypes;
     MoneyUI moneyUI;
     SeedUI seedUI;
     QuantList cropList;
     public GameObject gameOverUI;
+    public TextMeshProUGUI taxText;
+    public int initialLoss;
 
     // Awake is called before anything
     void Awake()
@@ -71,9 +76,16 @@ public class GameManager : MonoBehaviour, ITurnable
     {
         if(turnNumber % 6 == 0)
         {
-            // Lose some money
+            playerMoneyQuantity -= initialLoss;
+            initialLoss *= 2;
+            taxText.gameObject.SetActive(false);
         }
         turnNumber++;
+        if (turnNumber % 6 == 0)
+        {
+            taxText.text = "-$" + initialLoss;
+            taxText.gameObject.SetActive(false);
+        }
     }
 }
 

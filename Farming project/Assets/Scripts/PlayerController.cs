@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     Interactable closestInteract;
     PlantData heldPlantData;
     float spamPrevention;
+    int holdingCount;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         heldUI = FindObjectOfType<HeldUI>();
         spamPrevention = 0;
+        holdingCount = 0;
     }
 
     void MoveUpdate(InputAction.CallbackContext context)
@@ -46,24 +48,93 @@ public class PlayerController : MonoBehaviour
         spamPrevention = interactCooldown;
     }
 
+    public HELD GetHeld()
+    {
+        return playerHolding;
+    }
+
+    public int GetHeldQuant()
+    {
+        return holdingCount;
+    }
+
+    public PlantData GetHeldPlantData()
+    {
+        return heldPlantData;
+    }
+
     public void ChangeHeld(HELD newHeld, PlantData seedHeld, Sprite spriteHeld, int countHeld)
     {
+        // What to do if player picking up something they already have
+        if (playerHolding == newHeld)
+        {
+            // If taking same seed of same type, hold nothing
+            // Otherwise switch seed
+            switch (playerHolding)
+            {
+                case HELD.SEED:
+                    if (seedHeld == heldPlantData)
+                    {
+                        holdingCount += countHeld;
+                        heldUI.ChangeHeld(spriteHeld, holdingCount);
+                        return;
+                    }
+                    heldPlantData = seedHeld;
+                    holdingCount = countHeld;
+                    heldUI.ChangeHeld(spriteHeld, countHeld);
+                    return;
+                case HELD.CROP:
+                    if (seedHeld == heldPlantData)
+                    {
+                        holdingCount += countHeld;
+                        heldUI.ChangeHeld(spriteHeld, holdingCount);
+                        return;
+                    }
+                    // We should drop the crop they are currently holding maybe
+                    // but for now we just say "skill issue" and erase old
+                    heldPlantData = seedHeld;
+                    holdingCount = countHeld;
+                    heldUI.ChangeHeld(spriteHeld, countHeld);
+                    return;
+                case HELD.COMPOST:
+                    holdingCount += countHeld;
+                    heldUI.ChangeHeld(spriteHeld, holdingCount);
+                    return;
+                default:
+                    // Holding nothing
+                    holdingCount = 0;
+                    heldUI.ChangeHeld(null, 0);
+                    return;
+            }
+        }
+
         playerHolding = newHeld;
         if (playerHolding == HELD.SEED)
         {
             heldPlantData = seedHeld;
+            holdingCount = countHeld;
             heldUI.ChangeHeld(spriteHeld, countHeld);
         } else
         {
             heldPlantData = null;
+            holdingCount = countHeld;
             heldUI.ChangeHeld(spriteHeld, countHeld);
         }
     }
-    public void ChangeHeld(HELD newHeld, PlantData seedHeld, int countHeld)
+    public void HoldNothing()
     {
-        ChangeHeld(newHeld, seedHeld, seedHeld.seedSprite, countHeld);
+        ChangeHeld(HELD.NOTHING, null, null, 0);
     }
-
+    public void DecrementHeld()
+    {
+        holdingCount--;
+        if (holdingCount <= 0)
+        {
+            HoldNothing();
+            return;
+        }
+        ChangeHeld(playerHolding, heldPlantData, heldUI.CurrentSprite(), 0);
+    }
     public void ChangeClosestInteract(Interactable newInteract)
     {
         closestInteract = newInteract;
@@ -96,5 +167,5 @@ public class PlayerController : MonoBehaviour
 }
 
 public enum HELD {
-    NOTHING, SEED, COMPOST
+    NOTHING, SEED, COMPOST, CROP
 }
