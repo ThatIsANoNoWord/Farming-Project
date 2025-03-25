@@ -69,11 +69,11 @@ public class GameManager : MonoBehaviour, ITurnable
 
     public void Turn()
     {
-        turnNumber++;
-        if(turnNumber % 6 == 1)
+        if(turnNumber % 6 == 0)
         {
             // Lose some money
         }
+        turnNumber++;
     }
 }
 
@@ -110,7 +110,7 @@ public class QuantList
     public int GetPlantCurrQuant(PlantData plant)
     {
         Quant target = quantList.Find(x => x.MatchPlant(plant));
-        return target == null ? target.GetCurrQuant() : -1;
+        return target != null ? target.GetCurrQuant() : -1;
     }
 }
 

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection;
     Rigidbody2D rb;
     HELD playerHolding;
+    HeldUI heldUI;
     Interactable closestInteract;
     PlantData heldPlantData;
     float spamPrevention;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         controlInput.Player.Movement.canceled += StopMove;
         controlInput.Player.Interact.performed += Interact;
         rb = GetComponent<Rigidbody2D>();
+        heldUI = FindObjectOfType<HeldUI>();
         spamPrevention = 0;
     }
 
@@ -44,16 +46,22 @@ public class PlayerController : MonoBehaviour
         spamPrevention = interactCooldown;
     }
 
-    public void ChangeHeld(HELD newHeld, PlantData seedHeld)
+    public void ChangeHeld(HELD newHeld, PlantData seedHeld, Sprite spriteHeld, int countHeld)
     {
         playerHolding = newHeld;
         if (playerHolding == HELD.SEED)
         {
             heldPlantData = seedHeld;
+            heldUI.ChangeHeld(spriteHeld, countHeld);
         } else
         {
             heldPlantData = null;
+            heldUI.ChangeHeld(spriteHeld, countHeld);
         }
+    }
+    public void ChangeHeld(HELD newHeld, PlantData seedHeld, int countHeld)
+    {
+        ChangeHeld(newHeld, seedHeld, seedHeld.seedSprite, countHeld);
     }
 
     public void ChangeClosestInteract(Interactable newInteract)

@@ -56,6 +56,7 @@ public class Interactor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        print(closest);
         if (closest == null)
         {
             closest = null;
@@ -63,6 +64,7 @@ public class Interactor : MonoBehaviour
             interactIndicator.SetActive(false);
             playerScript.ChangeClosestInteract(null);
         }
+        print(closest);
         if (closest.gameObject == null)
         {
             return;

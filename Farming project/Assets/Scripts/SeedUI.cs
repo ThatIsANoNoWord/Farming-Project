@@ -35,7 +35,7 @@ public class SeedUI : MonoBehaviour
     }
     public void HoldSeed()
     {
-        playerController.ChangeHeld(HELD.SEED, plantSeedList[currentSeedHold]);
+        playerController.ChangeHeld(HELD.SEED, plantSeedList[currentSeedHold], crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]));
     }
     public void GiveSeedInfo(PlantData[] seedInfo)
     {
@@ -53,24 +53,28 @@ public class SeedUI : MonoBehaviour
     {
         currentSeedPurch++;
         currentSeedPurch %= plantSeedList.Length;
+        currentSeedPurch = currentSeedHold < 0 ? currentSeedPurch + plantSeedList.Length : currentSeedPurch;
         UpdateData();
     }
     public void DecrementSeedPurch()
     {
         currentSeedPurch--;
         currentSeedPurch %= plantSeedList.Length;
+        currentSeedPurch = currentSeedHold < 0 ? currentSeedPurch + plantSeedList.Length : currentSeedPurch;
         UpdateData();
     }
     public void IncrementSeedHold()
     {
         currentSeedHold++;
         currentSeedHold %= plantSeedList.Length;
+        currentSeedHold = currentSeedHold < 0 ? currentSeedHold + plantSeedList.Length : currentSeedHold;
         UpdateData();
     }
     public void DecrementSeedHold()
     {
         currentSeedHold--;
         currentSeedHold %= plantSeedList.Length;
+        currentSeedHold = currentSeedHold < 0 ? currentSeedHold + plantSeedList.Length : currentSeedHold;
         UpdateData();
     }
     public void UpdateData()
@@ -81,7 +85,6 @@ public class SeedUI : MonoBehaviour
         holdCropImage.sprite = plantSeedList[currentSeedHold].cropSprite;
 
         seedPrice.text = "$" + plantSeedList[currentSeedPurch].buySeedPrice.ToString();
-        Debug.Log(crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]));
         seedQuant.text = crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]).ToString();
     }
 }
