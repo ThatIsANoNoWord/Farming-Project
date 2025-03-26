@@ -6,11 +6,15 @@ using UnityEngine;
 public class TurnEndInteractable : Interactable
 {
     List<ITurnable> allTurnEnd;
-    public AnimationClip screenAnim;
+    public float waitTime;
     public Animator screenAnimator;
     PlayerController playerController;
 
     private void Start()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+    public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
         allTurnEnd = new List<ITurnable>();
         var tempVar = FindObjectsOfType<MonoBehaviour>().OfType<ITurnable>();
@@ -19,11 +23,7 @@ public class TurnEndInteractable : Interactable
             allTurnEnd.Add(temp);
         }
         allTurnEnd.Sort((x, y) => x.Prio() - y.Prio());
-        playerController = FindObjectOfType<PlayerController>();
-    }
-    public override void OnInteract(HELD playerHoldState, PlantData seedData)
-    {
-        foreach(ITurnable runable in allTurnEnd)
+        foreach (ITurnable runable in allTurnEnd)
         {
             runable.Turn();
         }
@@ -34,7 +34,7 @@ public class TurnEndInteractable : Interactable
 
     IEnumerator WaitAndGiveBack()
     {
-        yield return new WaitForSeconds(screenAnim.length);
+        yield return new WaitForSeconds(waitTime);
         playerController.SetPlayerControl(true);
     }
 }

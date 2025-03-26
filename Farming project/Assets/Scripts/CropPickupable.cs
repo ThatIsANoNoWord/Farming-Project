@@ -2,35 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CompostPickupable : Interactable, ITurnable
+public class CropPickupable : Interactable, ITurnable
 {
-    public Sprite[] compostSprites;
+    public Sprite noSprite;
+    PlantData cropPlant;
+    int cropCount;
     SpriteRenderer thisSpriteRenderer;
-    GameManager gameManager;
     PlayerController playerController;
-    int compostCount;
     void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
-        gameManager = FindObjectOfType<GameManager>();
     }
     void Start()
     {
-        thisSpriteRenderer.sprite = compostSprites[Random.Range(0, compostSprites.Length)];
-        compostCount = 1;
+        thisSpriteRenderer.sprite = cropPlant == null ? noSprite : cropPlant.cropSprite;
     }
-    public void Initial(int count)
+    public void SetPlantType(PlantData plant, int count)
     {
-        compostCount = count;
-        if(compostCount <= 0)
-        {
-            Destroy(gameObject);
-        }
+        cropPlant = plant;
+        cropCount = count;
+        thisSpriteRenderer.sprite = plant.cropSprite;
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
-        playerController.ChangeHeld(HELD.COMPOST, null, gameManager.compostSprite, 1);
+        playerController.ChangeHeld(HELD.CROP, cropPlant, cropPlant.cropSprite, cropCount);
         Destroy(gameObject);
     }
 

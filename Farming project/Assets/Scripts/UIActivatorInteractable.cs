@@ -13,7 +13,7 @@ public class UIActivatorInteractable : Interactable
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
         seedUI.SetActive(true);
-        seedUI.GetComponent<SeedUI>().UpdateData();
         playerController.SetPlayerControl(false);
+        seedUI.GetComponent<UI>().UpdateData();
     }
 }

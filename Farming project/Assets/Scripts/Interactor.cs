@@ -63,6 +63,7 @@ public class Interactor : MonoBehaviour
             closestDistance = 0;
             interactIndicator.SetActive(false);
             playerScript.ChangeClosestInteract(null);
+            return;
         }
         print(closest);
         if (closest.gameObject == null)

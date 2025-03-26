@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SeedUI : MonoBehaviour
+public class SeedUI : UI
 {
     public Sprite noSprite;
     public Image seedPurchImage;
@@ -45,10 +45,6 @@ public class SeedUI : MonoBehaviour
         }
         playerController.ChangeHeld(HELD.SEED, plantSeedList[currentSeedHold], plantSeedList[currentSeedHold].seedSprite, crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]));
     }
-    public void GiveSeedInfo(PlantData[] seedInfo)
-    {
-        plantSeedList = seedInfo;
-    }
     public void ReturnControl()
     {
         playerController.SetPlayerControl(true);
@@ -85,7 +81,7 @@ public class SeedUI : MonoBehaviour
         currentSeedHold = currentSeedHold < 0 ? currentSeedHold + plantSeedList.Length : currentSeedHold;
         UpdateData();
     }
-    public void UpdateData()
+    public override void UpdateData()
     {
         seedPurchImage.sprite = plantSeedList[currentSeedPurch].seedSprite;
         cropPurchImage.sprite = plantSeedList[currentSeedPurch].cropSprite;

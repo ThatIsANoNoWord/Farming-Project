@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantingSpot : Interactable, ITurnable
+public class PlantingSpot : Interactable
 {
     public static Sprite emptyPlantableSprite;
     SpriteRenderer growingSprite;
@@ -11,11 +11,13 @@ public class PlantingSpot : Interactable, ITurnable
     Plot parentPlot;
     int currentGrowthStage;
     PlayerController playerController;
+    GameManager gameManager;
 
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         growingSprite = gameObject.GetComponent<SpriteRenderer>();
+        gameManager = FindObjectOfType<GameManager>();
         growingPlant = null;
         spotCurrState = SpotStates.Empty;
         parentPlot = GetComponentInParent<Plot>();
@@ -24,6 +26,12 @@ public class PlantingSpot : Interactable, ITurnable
 
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
+        if (!parentPlot.plotActive)
+        {
+            parentPlot.AttemptPurchase();
+            return;
+        }
+
         if (spotCurrState == SpotStates.Empty)
         {
             switch (playerHoldState)
@@ -32,9 +40,12 @@ public class PlantingSpot : Interactable, ITurnable
                     // Do nothing
                     return;
                 case HELD.SEED:
+                    SeedPlanted(playerController.GetHeldPlantData());
+                    playerController.DecrementHeld();
                     return;
                 case HELD.COMPOST:
-                    // Compost time
+                    parentPlot.MakeConuco(1);
+                    playerController.DecrementHeld();
                     return;
                 case HELD.CROP:
                     // Do nothing
@@ -43,6 +54,21 @@ public class PlantingSpot : Interactable, ITurnable
                     Debug.LogError("Impossible to reach here");
                     return;
             }
+        }
+        if (spotCurrState == SpotStates.Harvestable)
+        {
+            Harvest();
+            return;
+        }
+        if (spotCurrState == SpotStates.Growing)
+        {
+            return;
+        }
+        if (playerHoldState == HELD.COMPOST)
+        {
+            parentPlot.MakeConuco(1);
+            playerController.DecrementHeld();
+            return;
         }
     }
 
@@ -54,7 +80,13 @@ public class PlantingSpot : Interactable, ITurnable
         growingSprite.sprite = plant.growthStages[currentGrowthStage];
     }
 
-    void EmptyPlot()
+    public void Harvest()
+    {
+        playerController.ChangeHeld(HELD.CROP, growingPlant, growingPlant.cropSprite, growingPlant.produceCount);
+        EmptyPlot();
+    }
+
+    public void EmptyPlot()
     {
         growingSprite.sprite = emptyPlantableSprite;
         growingPlant = null;
@@ -69,17 +101,27 @@ public class PlantingSpot : Interactable, ITurnable
             return;
         }
         currentGrowthStage++;
+        growingSprite.sprite = growingPlant.growthStages[currentGrowthStage];
         if (currentGrowthStage == growingPlant.growthStages.Length - 1)
         {
-
+            spotCurrState = SpotStates.Harvestable;
         }
     }
 
-    public void Turn()
+    public void CompostMode()
+    {
+        growingSprite.sprite = null;
+        growingPlant = null;
+        spotCurrState = SpotStates.Composting;
+    }
+
+    public void ProcessTurn()
     {
         switch (spotCurrState)
         {
             case SpotStates.Empty:
+                return;
+            case SpotStates.Composting:
                 return;
             case SpotStates.Growing:
                 GrowPlant();
@@ -92,14 +134,9 @@ public class PlantingSpot : Interactable, ITurnable
                 return;
         }
     }
-
-    public int Prio()
-    {
-        return 0;
-    }
 }
 
 enum SpotStates
 {
-    Empty, Growing, Harvestable
+    Empty, Growing, Harvestable, Composting
 }

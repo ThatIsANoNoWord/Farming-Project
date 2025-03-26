@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour, ITurnable
     public Sprite compostSprite;
     public PlantData[] plantDataTypes;
     MoneyUI moneyUI;
-    SeedUI seedUI;
     QuantList cropList;
     public GameObject gameOverUI;
     public TextMeshProUGUI taxText;
     public int initialLoss;
+    public GameObject compostPickupPrefab;
+    public Vector2 trCompSpawn;
+    public Vector2 blCompSpawn;
 
     // Awake is called before anything
     void Awake()
@@ -24,17 +26,14 @@ public class GameManager : MonoBehaviour, ITurnable
         // PlantDatabase.Initialize();
         cropList = new QuantList(plantDataTypes);
         cropList.IncreaseCap(plantDataTypes[0], 3);
+        moneyUI = FindObjectOfType<MoneyUI>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        moneyUI = FindObjectOfType<MoneyUI>();
-        seedUI = FindObjectOfType<SeedUI>();
         playerMoneyQuantity = 0;
         ChangeMoney(0);
-        seedUI.GiveSeedInfo(plantDataTypes);
         turnNumber = 1;
-        seedUI.UpdateData();
     }
 
     public void ChangeMoney(int newMoney)
@@ -47,6 +46,10 @@ public class GameManager : MonoBehaviour, ITurnable
             Time.timeScale = 0;
         }
     }
+    public int GetMoney()
+    {
+        return playerMoneyQuantity;
+    }
 
     public QuantList GetPlantQuant()
     {
@@ -57,6 +60,11 @@ public class GameManager : MonoBehaviour, ITurnable
         return plantDataTypes;
     }
 
+    public void DecrementSeed(PlantData plant)
+    {
+        cropList.DecreaseCurr(plant, 1);
+    }
+
     // Tries to purchase the seed for the player.
     // Returns 0 on success and -1 on failure.
     public int TryPurchaseSeed(PlantData seedPurchased)
@@ -65,7 +73,7 @@ public class GameManager : MonoBehaviour, ITurnable
         {
             return -1;
         }
-        playerMoneyQuantity -= seedPurchased.buySeedPrice;
+        ChangeMoney(-seedPurchased.buySeedPrice);
         cropList.IncreaseCap(seedPurchased, 1);
         return 0;
     }
@@ -74,7 +82,7 @@ public class GameManager : MonoBehaviour, ITurnable
     {
         if(turnNumber % 6 == 0)
         {
-            playerMoneyQuantity -= initialLoss;
+            ChangeMoney(-initialLoss);
             initialLoss *= 2;
             taxText.gameObject.SetActive(false);
         }
@@ -83,6 +91,14 @@ public class GameManager : MonoBehaviour, ITurnable
         {
             taxText.text = "-$" + initialLoss;
             taxText.gameObject.SetActive(false);
+        }
+
+        int compQuant = Random.Range(5,9);
+        for(int i = 0; i < compQuant; i++)
+        {
+            Vector2 newPos = new Vector2(Random.Range(blCompSpawn.x, trCompSpawn.x), Random.Range(blCompSpawn.y, trCompSpawn.y));
+            GameObject droppedCrop = Instantiate(compostPickupPrefab, newPos, Quaternion.identity);
+            droppedCrop.GetComponent<CompostPickupable>().Initial(1);
         }
     }
     public int Prio()
@@ -116,6 +132,17 @@ public class QuantList
             if (quantList[i].MatchPlant(plant))
             {
                 quantList[i].IncreaseCapacity(plusCap);
+                return;
+            }
+        }
+    }
+    public void DecreaseCurr(PlantData plant, int minusCurr)
+    {
+        for (int i = 0; i < quantList.Count; i++)
+        {
+            if (quantList[i].MatchPlant(plant))
+            {
+                quantList[i].DecreaseCurr(minusCurr);
                 return;
             }
         }
@@ -157,6 +184,10 @@ class Quant
     {
         seedTotQuantity += plusCapacity;
         seedCurrQuantity += plusCapacity;
+    }
+    public void DecreaseCurr(int minusCurr)
+    {
+        seedCurrQuantity -= minusCurr;
     }
 
     public bool MatchPlant(PlantData plant)

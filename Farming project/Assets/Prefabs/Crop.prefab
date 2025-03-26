@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6983569581747807258}
   - component: {fileID: -7777793806960358569}
-  - component: {fileID: 5934432533117342450}
   - component: {fileID: 6438135859351325591}
+  - component: {fileID: 213236392008930112}
   m_Layer: 0
-  m_Name: Compost
+  m_Name: Crop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,25 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5934432533117342450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682250143938418544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bee59c3a2ec54b4d9cc19484f18178d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  compostSprites:
-  - {fileID: 21300000, guid: e9ec5c1fbcf870d49a5a68603b97edf0, type: 3}
-  - {fileID: 21300000, guid: c4178da1e2d69454b8e3e55c314e5c81, type: 3}
-  - {fileID: 21300000, guid: c5cb3f83f9b47a7428955c1fb5b5f56d, type: 3}
-  - {fileID: 21300000, guid: ba62def3eef184e4aa3267ef01710223, type: 3}
-  - {fileID: 21300000, guid: 8aa6d7994d6ad7c41b0bc9230b2d5f87, type: 3}
-  - {fileID: 21300000, guid: b53b7ce3f607fae47bc5160125913681, type: 3}
 --- !u!61 &6438135859351325591
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &213236392008930112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682250143938418544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2580ce3f1df61c44280dc765a2a8fc54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noSprite: {fileID: 21300000, guid: 8ff34b78b542a474281daa8547aec2a6, type: 3}

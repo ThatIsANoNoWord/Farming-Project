@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.Collections;
 
-public class SellUI : MonoBehaviour, ITurnable
+public class SellUI : UI, ITurnable
 {
     public Sprite noSprite;
     public Image cropAllocImage;
@@ -14,7 +14,7 @@ public class SellUI : MonoBehaviour, ITurnable
     PlayerController playerController;
     GameManager gameManager;
     List<PlantData> plantsToBeSold;
-    private void Start()
+    private void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
         gameManager = FindObjectOfType<GameManager>();
@@ -39,7 +39,7 @@ public class SellUI : MonoBehaviour, ITurnable
         playerController.SetPlayerControl(true);
         gameObject.SetActive(false);
     }
-    public void UpdateData()
+    public override void UpdateData()
     {
         UpdateData(null);
     }

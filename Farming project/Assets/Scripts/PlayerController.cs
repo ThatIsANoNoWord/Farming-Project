@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     PlayerControl controlInput;
     public float movementSpeed;
     public float interactCooldown;
+    public GameObject cropPickupPrefab;
+    public GameObject compostPickupPrefab;
     Vector2 moveDirection;
     Rigidbody2D rb;
     HELD playerHolding;
@@ -90,8 +92,8 @@ public class PlayerController : MonoBehaviour
                         heldUI.ChangeHeld(spriteHeld, holdingCount);
                         return;
                     }
-                    // We should drop the crop they are currently holding maybe
-                    // but for now we just say "skill issue" and erase old
+                    GameObject droppedCrop = Instantiate(cropPickupPrefab);
+                    droppedCrop.GetComponent<CropPickupable>().SetPlantType(heldPlantData, holdingCount);
                     heldPlantData = seedHeld;
                     holdingCount = countHeld;
                     heldUI.ChangeHeld(spriteHeld, countHeld);
@@ -108,18 +110,32 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        playerHolding = newHeld;
-        if (playerHolding == HELD.SEED)
+        if (playerHolding == HELD.CROP)
         {
+            GameObject droppedCrop = Instantiate(cropPickupPrefab, transform.position, Quaternion.identity);
+            droppedCrop.GetComponent<CropPickupable>().SetPlantType(heldPlantData, holdingCount);
             heldPlantData = seedHeld;
             holdingCount = countHeld;
             heldUI.ChangeHeld(spriteHeld, countHeld);
-        } else
+            playerHolding = newHeld;
+            return;
+        }
+
+        if (playerHolding == HELD.COMPOST)
         {
-            heldPlantData = null;
+            GameObject droppedCrop = Instantiate(compostPickupPrefab, transform.position, Quaternion.identity);
+            droppedCrop.GetComponent<CompostPickupable>().Initial(holdingCount);
+            heldPlantData = seedHeld;
             holdingCount = countHeld;
             heldUI.ChangeHeld(spriteHeld, countHeld);
+            playerHolding = newHeld;
+            return;
         }
+
+        playerHolding = newHeld;
+        heldPlantData = seedHeld;
+        holdingCount = countHeld;
+        heldUI.ChangeHeld(spriteHeld, countHeld);
     }
     public void HoldNothing()
     {

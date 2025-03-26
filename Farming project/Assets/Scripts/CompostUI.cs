@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.Collections;
 
-public class CompostUI : MonoBehaviour, ITurnable
+public class CompostUI : UI, ITurnable
 {
     public Sprite noSprite;
     public Image cropAllocImage;
@@ -16,11 +16,13 @@ public class CompostUI : MonoBehaviour, ITurnable
     GameManager gameManager;
     int allocated = 0;
     int compostContained = 0;
+    PlantData lastPlant;
     private void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         gameManager = FindObjectOfType<GameManager>();
 
+        lastPlant = null;
         UpdateData();
     }
     public void AllocateCrop()
@@ -31,7 +33,8 @@ public class CompostUI : MonoBehaviour, ITurnable
             return;
         }
         allocated++;
-        UpdateData(playerController.GetHeldPlantData());
+        lastPlant = playerController.GetHeldPlantData();
+        UpdateData();
         playerController.DecrementHeld();
     }
     public void HoldCompost()
@@ -40,19 +43,21 @@ public class CompostUI : MonoBehaviour, ITurnable
         {
             compostContained = playerController.GetHeldQuant();
             playerController.ChangeHeld(HELD.NOTHING, null, null, 0);
+            UpdateData();
             return;
         }
         playerController.ChangeHeld(HELD.COMPOST, null, gameManager.compostSprite, compostContained);
         compostContained = 0;
+        UpdateData();
     }
     public void ReturnControl()
     {
         playerController.SetPlayerControl(true);
         gameObject.SetActive(false);
     }
-    public void UpdateData()
+    public override void UpdateData()
     {
-        UpdateData(null);
+        UpdateData(lastPlant);
     }
     public void UpdateData(PlantData plant)
     {
@@ -67,6 +72,7 @@ public class CompostUI : MonoBehaviour, ITurnable
     {
         compostContained = allocated * 3;
         allocated = 0;
+        lastPlant = null;
         UpdateData();
     }
     public int Prio()
