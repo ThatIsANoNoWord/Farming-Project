@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlantingSpot : Interactable
 {
-    public static Sprite emptyPlantableSprite;
+    public Sprite emptyPlantableSprite;
     SpriteRenderer growingSprite;
     PlantData growingPlant;
     SpotStates spotCurrState;

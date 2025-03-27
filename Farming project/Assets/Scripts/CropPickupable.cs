@@ -23,6 +23,10 @@ public class CropPickupable : Interactable, ITurnable
         cropPlant = plant;
         cropCount = count;
         thisSpriteRenderer.sprite = plant.cropSprite;
+        if (cropCount <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {

@@ -24,6 +24,10 @@ public class Interactor : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.gameObject.GetComponent<Interactable>())
+        {
+            interactObjects.Add(collision.gameObject);
+        }
         if (!interactObjects.Contains(collision.gameObject))
         {
             return;

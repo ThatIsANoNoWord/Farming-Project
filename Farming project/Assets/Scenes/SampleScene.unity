@@ -2431,10 +2431,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.091603056
+    y: 0.33333334
+    width: 0.8142494
+    height: 0.3314917
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -7195,7 +7195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 400
-  interactCooldown: 0.4
+  interactCooldown: 0.2
   cropPickupPrefab: {fileID: 682250143938418544, guid: f2296b1c92cbf1049b2e86717e288432, type: 3}
   compostPickupPrefab: {fileID: 682250143938418544, guid: 7304721130df41c448862e07504c2377, type: 3}
 --- !u!1 &1512941042

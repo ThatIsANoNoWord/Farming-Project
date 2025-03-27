@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour, ITurnable
 
     public void ChangeMoney(int newMoney)
     {
-        playerMoneyQuantity = newMoney;
+        playerMoneyQuantity += newMoney;
         moneyUI.DisplayMoney(playerMoneyQuantity);
         if(playerMoneyQuantity < 0)
         {
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour, ITurnable
     }
     public int Prio()
     {
-        return -99;
+        return -1;
     }
 }
 

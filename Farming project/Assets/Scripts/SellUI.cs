@@ -33,6 +33,7 @@ public class SellUI : UI, ITurnable
         plantsToBeSold.Add(playerController.GetHeldPlantData());
         UpdateData(playerController.GetHeldPlantData());
         playerController.DecrementHeld();
+        Debug.Log(plantsToBeSold);
     }
     public void ReturnControl()
     {

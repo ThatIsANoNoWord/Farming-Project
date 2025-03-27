@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &9173269152634315338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -325,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &660828390451661236
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -552,6 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &3704980405561344597
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1016,6 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &6474844418331484696
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1159,6 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &5018163074018423094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1302,6 +1307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &6441349189558384260
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1795,6 +1801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &8925816570878678476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1938,6 +1945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &88269289728415948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2081,6 +2089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9addd8cfda082b140975ee9d96630750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyPlantableSprite: {fileID: 21300000, guid: d1abfb0cf11ecea4ab139dee8615e0d2, type: 3}
 --- !u!61 &3138157817420398630
 BoxCollider2D:
   m_ObjectHideFlags: 0
