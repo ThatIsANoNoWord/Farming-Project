@@ -54,6 +54,7 @@ public class Plot : MonoBehaviour, ITurnable
 
     public void NoConuco()
     {
+        if (pendingOrganicMatter == 0) return;
         moundObject.SetActive(false);
         pendingOrganicMatter = 0;
         plantingSpots.ForEach(x => x.EmptyPlot());
@@ -98,7 +99,6 @@ public class Plot : MonoBehaviour, ITurnable
         plotQuality = IntToSQ(quality);
 
         spriteRenderer.sprite = qualitySprites[(int)plotQuality];
-        Debug.Log((int)plotQuality);
     }
 
     public SoilQuality IntToSQ(int quality)
@@ -118,9 +118,18 @@ public class Plot : MonoBehaviour, ITurnable
 
     public void Turn()
     {
-        Debug.Log("HI???? " + pendingOrganicMatter.ToString());
         UpdatePlotQuality(pendingOrganicMatter);
         plantingSpots.ForEach(x => x.ProcessTurn());
+        int plants = 0;
+        foreach (PlantingSpot planting in plantingSpots)
+        {
+            if (!planting.IsEmpty())
+            {
+                plants++;
+            }
+        }
+        plants = Mathf.Clamp(plants - 2, 0, int.MaxValue);
+        UpdatePlotQuality(-plants);
         UpdateSign();
     }
     public int Prio()

@@ -33,9 +33,8 @@ public class SellUI : UI, ITurnable
             return;
         }
         plantsToBeSold.Add(playerController.GetHeldPlantData());
-        UpdateData(playerController.GetHeldPlantData());
+        UpdateData();
         playerController.DecrementHeld();
-        Debug.Log(plantsToBeSold);
     }
     public void ReturnControl()
     {
@@ -44,12 +43,8 @@ public class SellUI : UI, ITurnable
     }
     public override void UpdateData()
     {
-        UpdateData(null);
-    }
-    public void UpdateData(PlantData plant)
-    {
-        cropAllocImage.sprite = plant != null ? plant.cropSprite : null;
-        cropAllocImage.color = new Color(1, 1, 1, plant != null ? 1 : 0);
+        cropAllocImage.sprite = plantsToBeSold.Count == 0 ? null : plantsToBeSold.ToArray()[plantsToBeSold.Count - 1].cropSprite;
+        cropAllocImage.color = new Color(1, 1, 1, plantsToBeSold.Count == 0 ? 1 : 0);
 
         allocatedQuant.text = plantsToBeSold.Count.ToString();
     }
@@ -63,8 +58,6 @@ public class SellUI : UI, ITurnable
             plantsToBeSold.RemoveAll(x => true);
         }
         gameManager.ChangeMoney(gains);
-        Debug.Log("HELLO???? " + gains.ToString());
-        Debug.Log(gains);
         UpdateData();
     }
     public int Prio()

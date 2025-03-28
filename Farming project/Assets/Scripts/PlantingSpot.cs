@@ -60,8 +60,14 @@ public class PlantingSpot : Interactable
             Harvest();
             return;
         }
-        if (spotCurrState == SpotStates.Growing)
+        if (spotCurrState == SpotStates.Growing && playerHoldState == HELD.SEED)
         {
+            return;
+        }
+        if (spotCurrState == SpotStates.Composting && playerHoldState == HELD.SEED)
+        {
+            SeedPlanted(playerController.GetHeldPlantData());
+            playerController.DecrementHeld();
             return;
         }
         if (playerHoldState == HELD.COMPOST)
@@ -74,6 +80,7 @@ public class PlantingSpot : Interactable
 
     void SeedPlanted(PlantData plant)
     {
+        parentPlot.NoConuco();
         spotCurrState = SpotStates.Growing;
         growingPlant = plant;
         currentGrowthStage = 0;
@@ -134,6 +141,11 @@ public class PlantingSpot : Interactable
                 Debug.LogError("Impossible to reach here");
                 return;
         }
+    }
+
+    public bool IsEmpty()
+    {
+        return spotCurrState == SpotStates.Empty || spotCurrState == SpotStates.Composting;
     }
 }
 

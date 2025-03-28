@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour, ITurnable
     public Sprite compostSprite;
     public PlantData[] plantDataTypes;
     MoneyUI moneyUI;
+    MailUI mailUI;
     QuantList cropList;
     public GameObject gameOverUI;
     public TextMeshProUGUI taxText;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour, ITurnable
     public Vector2 trCompSpawn;
     public Vector2 blCompSpawn;
     public Animator winAnim;
+    public List<LetterData> letters;
     List<Plot> plots;
     int winCon;
 
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour, ITurnable
         cropList = new QuantList(plantDataTypes);
         cropList.IncreaseCap(plantDataTypes[0], 3);
         moneyUI = FindObjectOfType<MoneyUI>();
+        mailUI = FindObjectOfType<MailUI>();
         plots = new List<Plot>();
         plots.AddRange(FindObjectsOfType<Plot>());
     }
@@ -41,12 +44,12 @@ public class GameManager : MonoBehaviour, ITurnable
         ChangeMoney(0);
         turnNumber = 1;
         winCon = 0;
+        LetterEnqueue();
     }
 
     public void ChangeMoney(int newMoney)
     {
         playerMoneyQuantity += newMoney;
-        Debug.Log(playerMoneyQuantity);
         moneyUI.DisplayMoney(playerMoneyQuantity);
         if(playerMoneyQuantity < 0)
         {
@@ -58,7 +61,24 @@ public class GameManager : MonoBehaviour, ITurnable
     {
         return playerMoneyQuantity;
     }
+    void LetterEnqueue()
+    {
+        List<LetterData> listToSend = new List<LetterData>();
+        for (int i = 0; i < letters.Count; i++)
+        {
+            if (turnNumber >= letters.ToArray()[i].dayAppear)
+            {
+                listToSend.Add(letters.ToArray()[i]);
+            }
+        }
 
+        listToSend.ForEach(SendToMail);
+    }
+    void SendToMail(LetterData data)
+    {
+        mailUI.QueueNewLetter(data.contents);
+        letters.Remove(data);
+    }
     public QuantList GetPlantQuant()
     {
         return cropList;
@@ -117,6 +137,7 @@ public class GameManager : MonoBehaviour, ITurnable
         }
         cropList.ResetValues();
         dayText.text = "Day " + turnNumber.ToString();
+        LetterEnqueue();
     }
     public int Prio()
     {
@@ -209,13 +230,16 @@ class Quant
 
     public bool MatchPlant(PlantData plant)
     {
-        Debug.Log(plant);
-        Debug.Log(this.plant);
         return plant.cropName.Equals(this.plant.cropName);
     }
 }
 
-class LetterData
+[System.Serializable]
+public class LetterData
 {
-    int dayAppear;
+    [SerializeField]
+    public int dayAppear;
+    [SerializeField]
+    [TextArea(5,20)]
+    public string contents;
 }

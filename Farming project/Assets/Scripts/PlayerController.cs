@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
                         heldUI.ChangeHeld(spriteHeld, holdingCount);
                         return;
                     }
-                    GameObject droppedCrop = Instantiate(cropPickupPrefab);
+                    GameObject droppedCrop = Instantiate(cropPickupPrefab, transform.position, Quaternion.identity);
                     droppedCrop.GetComponent<CropPickupable>().SetPlantType(heldPlantData, holdingCount);
                     heldPlantData = seedHeld;
                     holdingCount = countHeld;

@@ -32,9 +32,8 @@ public class TurnEndInteractable : Interactable
         foreach (ITurnable temp in tempVar)
         {
             allTurnEnd.Add(temp);
-            Debug.Log(temp);
         }
-        allTurnEnd.Sort((x, y) => x.Prio() - y.Prio());
+        allTurnEnd.Sort((x, y) => y.Prio() - x.Prio());
         foreach (ITurnable runable in allTurnEnd)
         {
             runable.Turn();
