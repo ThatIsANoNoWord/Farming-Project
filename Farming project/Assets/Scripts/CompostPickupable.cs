@@ -28,6 +28,15 @@ public class CompostPickupable : Interactable, ITurnable
             Destroy(gameObject);
         }
     }
+    public void InitialSpecial(int count)
+    {
+        compostCount = count;
+        if (compostCount <= 0)
+        {
+            Destroy(gameObject);
+        }
+        thisSpriteRenderer.sprite = gameManager.compostSprite;
+    }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
         playerController.ChangeHeld(HELD.COMPOST, null, gameManager.compostSprite, 1);

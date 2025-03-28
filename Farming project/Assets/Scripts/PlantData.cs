@@ -12,6 +12,8 @@ public class PlantData : ScriptableObject
     public int sellPrice;
     public int buySeedPrice;
     public SoilQuality requiredSoilQuality;
+    [TextArea]
+    public string description;
 
     public override string ToString()
     {

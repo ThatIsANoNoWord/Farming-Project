@@ -17,8 +17,13 @@ MonoBehaviour:
   cropSprite: {fileID: 21300000, guid: a4244dc603d46a2409243f29085f91a1, type: 3}
   growthStages:
   - {fileID: 21300000, guid: eeb9cc2761487ee498a4fe05700fb7d8, type: 3}
+  - {fileID: 21300000, guid: c105c59559ff24a468d43adfd15c1d5f, type: 3}
   - {fileID: 21300000, guid: a4244dc603d46a2409243f29085f91a1, type: 3}
-  produceCount: 2
-  sellPrice: 150
-  buySeedPrice: 100
+  produceCount: 3
+  sellPrice: 300
+  buySeedPrice: 600
   requiredSoilQuality: 3
+  description: 'What did the man do?
+
+
+    The mango'

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7fae0bba9481fb449aa1ce6a07ed05f, type: 3}
+  m_Name: Guava
+  m_EditorClassIdentifier: 
+  cropName: Guava
+  seedSprite: {fileID: 21300000, guid: 626ed2d6824276d43bc307f4b6f4fbd0, type: 3}
+  cropSprite: {fileID: 21300000, guid: f2feb33a98cdba040b9f21de6fd815e7, type: 3}
+  growthStages:
+  - {fileID: 21300000, guid: 626ed2d6824276d43bc307f4b6f4fbd0, type: 3}
+  - {fileID: 21300000, guid: c105c59559ff24a468d43adfd15c1d5f, type: 3}
+  - {fileID: 21300000, guid: f2feb33a98cdba040b9f21de6fd815e7, type: 3}
+  produceCount: 4
+  sellPrice: 50
+  buySeedPrice: 250
+  requiredSoilQuality: 2
+  description: 

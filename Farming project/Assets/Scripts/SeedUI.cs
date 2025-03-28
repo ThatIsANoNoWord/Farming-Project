@@ -40,6 +40,7 @@ public class SeedUI : UI
     // Otherwise hold the seed type
     public void HoldSeed()
     {
+        if (crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]) <= 0) return;
         if (playerController.GetHeld() == HELD.SEED && playerController.GetHeldPlantData() == plantSeedList[currentSeedHold].seedSprite)
         {
             playerController.HoldNothing();

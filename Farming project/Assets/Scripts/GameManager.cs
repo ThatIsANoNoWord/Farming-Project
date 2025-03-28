@@ -15,10 +15,14 @@ public class GameManager : MonoBehaviour, ITurnable
     QuantList cropList;
     public GameObject gameOverUI;
     public TextMeshProUGUI taxText;
+    public TextMeshProUGUI dayText;
     public int initialLoss;
     public GameObject compostPickupPrefab;
     public Vector2 trCompSpawn;
     public Vector2 blCompSpawn;
+    public Animator winAnim;
+    List<Plot> plots;
+    int winCon;
 
     // Awake is called before anything
     void Awake()
@@ -27,6 +31,8 @@ public class GameManager : MonoBehaviour, ITurnable
         cropList = new QuantList(plantDataTypes);
         cropList.IncreaseCap(plantDataTypes[0], 3);
         moneyUI = FindObjectOfType<MoneyUI>();
+        plots = new List<Plot>();
+        plots.AddRange(FindObjectsOfType<Plot>());
     }
     // Start is called before the first frame update
     void Start()
@@ -34,6 +40,7 @@ public class GameManager : MonoBehaviour, ITurnable
         playerMoneyQuantity = 0;
         ChangeMoney(0);
         turnNumber = 1;
+        winCon = 0;
     }
 
     public void ChangeMoney(int newMoney)
@@ -86,12 +93,19 @@ public class GameManager : MonoBehaviour, ITurnable
             ChangeMoney(-initialLoss);
             initialLoss *= 2;
             taxText.gameObject.SetActive(false);
+            bool allUnlocked = true;
+            plots.ForEach(x => allUnlocked = allUnlocked && x.plotActive);
+            if (allUnlocked) winCon++;
+            if (winCon == 2)
+            {
+                winAnim.Play("YouWin");
+            }
         }
         turnNumber++;
         if (turnNumber % 6 == 0)
         {
             taxText.text = "-$" + initialLoss;
-            taxText.gameObject.SetActive(false);
+            taxText.gameObject.SetActive(true);
         }
 
         int compQuant = Random.Range(5,9);
@@ -101,6 +115,8 @@ public class GameManager : MonoBehaviour, ITurnable
             GameObject droppedCrop = Instantiate(compostPickupPrefab, newPos, Quaternion.identity);
             droppedCrop.GetComponent<CompostPickupable>().Initial(1);
         }
+        cropList.ResetValues();
+        dayText.text = "Day " + turnNumber.ToString();
     }
     public int Prio()
     {
@@ -110,7 +126,7 @@ public class GameManager : MonoBehaviour, ITurnable
 
 public class QuantList
 {
-    List<Quant> quantList;
+    readonly List<Quant> quantList;
 
     public QuantList(PlantData[] plantDatas)
     {
@@ -197,4 +213,9 @@ class Quant
         Debug.Log(this.plant);
         return plant.cropName.Equals(this.plant.cropName);
     }
+}
+
+class LetterData
+{
+    int dayAppear;
 }

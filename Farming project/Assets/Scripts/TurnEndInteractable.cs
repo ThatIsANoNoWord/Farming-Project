@@ -6,6 +6,7 @@ using UnityEngine;
 public class TurnEndInteractable : Interactable
 {
     List<ITurnable> allTurnEnd;
+    public float waitWorkTime;
     public float waitTime;
     public Animator screenAnimator;
     PlayerController playerController;
@@ -16,6 +17,16 @@ public class TurnEndInteractable : Interactable
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
+        StartCoroutine(WaitAndWork());
+        screenAnimator.Play("FadeAndReturn");
+        playerController.SetPlayerControl(false);
+        StartCoroutine(WaitAndGiveBack());
+    }
+
+
+    IEnumerator WaitAndWork()
+    {
+        yield return new WaitForSeconds(waitWorkTime);
         allTurnEnd = new List<ITurnable>();
         var tempVar = FindObjectsOfType<MonoBehaviour>(true).OfType<ITurnable>();
         foreach (ITurnable temp in tempVar)
@@ -28,11 +39,7 @@ public class TurnEndInteractable : Interactable
         {
             runable.Turn();
         }
-        screenAnimator.Play("FadeAndReturn");
-        playerController.SetPlayerControl(false);
-        StartCoroutine(WaitAndGiveBack());
     }
-
     IEnumerator WaitAndGiveBack()
     {
         yield return new WaitForSeconds(waitTime);
