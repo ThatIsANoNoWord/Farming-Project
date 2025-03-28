@@ -13,7 +13,7 @@ public class SellUI : UI, ITurnable
     public Animator needToHoldCropWarning;
     PlayerController playerController;
     GameManager gameManager;
-    List<PlantData> plantsToBeSold;
+    List<PlantData> plantsToBeSold = new List<PlantData>();
     private void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -22,6 +22,8 @@ public class SellUI : UI, ITurnable
         plantsToBeSold = new List<PlantData>();
 
         UpdateData();
+
+        gameObject.SetActive(false);
     }
     public void AllocateCrop()
     {
@@ -55,9 +57,14 @@ public class SellUI : UI, ITurnable
     public void Turn()
     {
         int gains = 0;
-        plantsToBeSold.ForEach(x => gains += x.sellPrice);
-        plantsToBeSold.RemoveAll(x => true);
+        if (plantsToBeSold.Count > 0)
+        {
+            plantsToBeSold.ForEach(x => gains += x.sellPrice);
+            plantsToBeSold.RemoveAll(x => true);
+        }
         gameManager.ChangeMoney(gains);
+        Debug.Log("HELLO???? " + gains.ToString());
+        Debug.Log(gains);
         UpdateData();
     }
     public int Prio()

@@ -78,6 +78,7 @@ public class PlantingSpot : Interactable
         growingPlant = plant;
         currentGrowthStage = 0;
         growingSprite.sprite = plant.growthStages[currentGrowthStage];
+        gameManager.DecrementSeed(plant);
     }
 
     public void Harvest()

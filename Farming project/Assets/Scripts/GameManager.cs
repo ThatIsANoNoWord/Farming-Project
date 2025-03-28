@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour, ITurnable
     public void ChangeMoney(int newMoney)
     {
         playerMoneyQuantity += newMoney;
+        Debug.Log(playerMoneyQuantity);
         moneyUI.DisplayMoney(playerMoneyQuantity);
         if(playerMoneyQuantity < 0)
         {

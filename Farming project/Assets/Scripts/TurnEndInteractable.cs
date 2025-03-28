@@ -17,10 +17,11 @@ public class TurnEndInteractable : Interactable
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
         allTurnEnd = new List<ITurnable>();
-        var tempVar = FindObjectsOfType<MonoBehaviour>().OfType<ITurnable>();
+        var tempVar = FindObjectsOfType<MonoBehaviour>(true).OfType<ITurnable>();
         foreach (ITurnable temp in tempVar)
         {
             allTurnEnd.Add(temp);
+            Debug.Log(temp);
         }
         allTurnEnd.Sort((x, y) => x.Prio() - y.Prio());
         foreach (ITurnable runable in allTurnEnd)

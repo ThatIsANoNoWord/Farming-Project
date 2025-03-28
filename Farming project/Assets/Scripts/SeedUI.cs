@@ -27,6 +27,8 @@ public class SeedUI : UI
         crops = gameManager.GetPlantQuant();
         plantSeedList = gameManager.GetSeedList();
         UpdateData();
+
+        gameObject.SetActive(false);
     }
     public void PurchaseSeed()
     {

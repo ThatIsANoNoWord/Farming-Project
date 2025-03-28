@@ -24,6 +24,8 @@ public class CompostUI : UI, ITurnable
 
         lastPlant = null;
         UpdateData();
+
+        gameObject.SetActive(false);
     }
     public void AllocateCrop()
     {

@@ -118,6 +118,7 @@ public class Plot : MonoBehaviour, ITurnable
 
     public void Turn()
     {
+        Debug.Log("HI???? " + pendingOrganicMatter.ToString());
         UpdatePlotQuality(pendingOrganicMatter);
         plantingSpots.ForEach(x => x.ProcessTurn());
     }
