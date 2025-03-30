@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     HeldUI heldUI;
     Interactable closestInteract;
     PlantData heldPlantData;
+    Animator animator;
     float spamPrevention;
     int holdingCount;
 
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         controlInput.Player.Movement.canceled += StopMove;
         controlInput.Player.Interact.performed += Interact;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         heldUI = FindObjectOfType<HeldUI>();
         spamPrevention = 0;
         holdingCount = 0;
@@ -36,6 +38,8 @@ public class PlayerController : MonoBehaviour
     void MoveUpdate(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector2>();
+        animator.SetFloat("xMov", moveDirection.x);
+        animator.SetFloat("yMov", moveDirection.y);
     }
     void StopMove(InputAction.CallbackContext context)
     {

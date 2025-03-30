@@ -44,7 +44,7 @@ public class SellUI : UI, ITurnable
     public override void UpdateData()
     {
         cropAllocImage.sprite = plantsToBeSold.Count == 0 ? null : plantsToBeSold.ToArray()[plantsToBeSold.Count - 1].cropSprite;
-        cropAllocImage.color = new Color(1, 1, 1, plantsToBeSold.Count == 0 ? 1 : 0);
+        cropAllocImage.color = new Color(1, 1, 1, plantsToBeSold.Count == 0 ? 0 : 1);
 
         allocatedQuant.text = plantsToBeSold.Count.ToString();
     }

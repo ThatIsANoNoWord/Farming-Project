@@ -38,6 +38,7 @@ public class MailUI : UI, ITurnable
     public void Turn()
     {
         mailQueue.Clear();
+        interactor.SetActive(false);
     }
 
     public int Prio()

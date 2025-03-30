@@ -7,7 +7,7 @@ using System.Xml.Linq;
 public class GameManager : MonoBehaviour, ITurnable
 {
 
-    int playerMoneyQuantity;
+    [SerializeField] int playerMoneyQuantity;
     int turnNumber;
     public Sprite compostSprite;
     public PlantData[] plantDataTypes;
@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour, ITurnable
     // Start is called before the first frame update
     void Start()
     {
-        playerMoneyQuantity = 0;
         ChangeMoney(0);
         turnNumber = 1;
         winCon = 0;

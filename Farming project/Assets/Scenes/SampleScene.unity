@@ -314,7 +314,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: b2f5a31912f8b0f4fb20d5ff7a7b37b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -789,7 +789,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: b2f5a31912f8b0f4fb20d5ff7a7b37b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1948,7 +1948,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: b2f5a31912f8b0f4fb20d5ff7a7b37b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3231,10 +3231,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.091603056
-    y: 0.33333334
-    width: 0.8142494
-    height: 0.3314917
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -3857,7 +3857,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -9
-  m_Sprite: {fileID: 21300000, guid: b36f33bf58c07024bb9688894281ad59, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab97beff366df054081097c6ecbffb33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5606,7 +5606,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: b2f5a31912f8b0f4fb20d5ff7a7b37b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5762,6 +5762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11be5a1f797f60b4da5387a5aedf6999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMoneyQuantity: 0
   compostSprite: {fileID: 21300000, guid: b8070545799c670458051ba5c893becc, type: 3}
   plantDataTypes:
   - {fileID: 11400000, guid: f6557e719ec00b049b88fc6806137dc0, type: 2}
@@ -5819,20 +5820,86 @@ MonoBehaviour:
 
       John
       Farmer'
-  - dayAppear: 4
+  - dayAppear: 5
     contents: 'GOVERNMENT NOTICE
 
 
       As a farmer that is part of the Food Sovereignty
-      Act, you are required by law to pay a tax. These will come intermittently,
-      and the amount you pay will increase over time. Failure to pay this tax will
-      result in the relinquishment of your land, which may impact the future of the
-      Food Sovereignty Act.
+      Act, you are required by law to pay a tax at the end of the day. These will
+      come intermittently, and the amount you pay will increase over time. Failure
+      to pay this tax will result in the relinquishment of your land, which may impact
+      the future of the Food Sovereignty Act.
+
+
+      Tax will come every 6 days,
+      with the next tax coming tomorrow. You will know how much to pay when the time
+      comes. Be prepared.
+
+
+      John Government'
+  - dayAppear: 7
+    contents: 'Hello my good old, buddy old, fellow farmer pal!
+
+
+      Have you
+      been looking at the crop choices you can choose to grow? There should be a
+      handy little compendium on your farm somewhere. Those handy little books tell
+      you all about the various crops you can grow!
+
+
+      Knowing what to grow
+      is a huge part of being a farmer! If you''re strapped for cash, you might want
+      to plant crops that give huge returns! If you need some extra compost, you''ll
+      want the crops with huge yields! Do what you think is best for the farm, and
+      I''m sure you''ll find success.
 
 
       Regards,
 
+      John Farmer'
+  - dayAppear: 11
+    contents: 'GOVERNMENT NOTICE
+
+
+      Tax will come tomorrow. You will know how
+      much to pay when the time comes. Be prepared.
+
+
       John Government'
+  - dayAppear: 17
+    contents: "GOVERNMENT NOTICE\n\nGovernment letters sent to warn farmers of tax
+      day will cease. This does not mean the end of the farm tax. Please remember
+      to continue paying, otherwise we will have to make proper punishments. \n\nJohn
+      Government"
+  - dayAppear: 9
+    contents: 'Hello Farmer.
+
+
+      Thank you so much for participating in the Food
+      Sovereignty Act trial. Knowing that real farmers are working on our farms,
+      our fields like it used to be, brings joy to my heart.
+
+
+      You don''t know
+      me. And judging from my situation, it seems that we might never meet in person.
+      But I have you to thank for making my dreams come true. All I ask is that you
+      keep going, no matter how rough things get.'
+  - dayAppear: 14
+    contents: 'Oh no.
+
+
+      Sorry pal, I might not write letters anymore. I barely
+      made last tax round.
+
+
+      I need to lock in. You need to, too.
+
+
+      Good
+      luck.
+
+
+      John Farmer.'
 --- !u!1 &918331482
 GameObject:
   m_ObjectHideFlags: 0
@@ -6347,7 +6414,7 @@ Transform:
   m_GameObject: {fileID: 982737870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3, y: -3.5, z: 0}
+  m_LocalPosition: {x: 1.75, y: -3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7568,7 +7635,7 @@ Transform:
   m_GameObject: {fileID: 1219515196}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7606,7 +7673,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.3150826, y: -2.0629892}
+  m_Offset: {x: -1.3150826, y: -1.9484053}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7617,7 +7684,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2630692, y: 1.0493145}
+  m_Size: {x: 1.2630692, y: 1.2784824}
   m_EdgeRadius: 0
 --- !u!114 &1219515199
 MonoBehaviour:
@@ -9893,7 +9960,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.5
 --- !u!50 &1489654347
 Rigidbody2D:
   serializedVersion: 4
@@ -9934,7 +10001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactIndicator: {fileID: 1478007484}
-  indicatorUpDist: 1
+  indicatorUpDist: 1.2
 --- !u!1 &1495080861
 GameObject:
   m_ObjectHideFlags: 0
@@ -9947,6 +10014,7 @@ GameObject:
   - component: {fileID: 1495080865}
   - component: {fileID: 1495080864}
   - component: {fileID: 1495080866}
+  - component: {fileID: 1495080867}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10015,7 +10083,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.5}
+  m_Size: {x: 0.875, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &1495080865
 Rigidbody2D:
@@ -10060,6 +10128,27 @@ MonoBehaviour:
   interactCooldown: 0.1
   cropPickupPrefab: {fileID: 682250143938418544, guid: f2296b1c92cbf1049b2e86717e288432, type: 3}
   compostPickupPrefab: {fileID: 682250143938418544, guid: 7304721130df41c448862e07504c2377, type: 3}
+--- !u!95 &1495080867
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495080861}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21ca8d7fcd8e01b429a996c58191d93f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1512941042
 GameObject:
   m_ObjectHideFlags: 0
@@ -10199,7 +10288,7 @@ Transform:
   m_GameObject: {fileID: 1525766566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3, y: -3.4, z: 0}
+  m_LocalPosition: {x: -3, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10535,7 +10624,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.4986267, y: -1.0109463}
+  m_Offset: {x: -1.285759, y: -0.59550285}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10546,7 +10635,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1315613, y: 4.1396866}
+  m_Size: {x: 4.807419, y: 5.349575}
   m_EdgeRadius: 0
 --- !u!1 &1554460428
 GameObject:
@@ -11349,7 +11438,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008190155, y: -0.23835373}
+  m_Offset: {x: 0.008190155, y: 0.7310133}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11360,7 +11449,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.145195, y: 2.5945015}
+  m_Size: {x: 6.145195, y: 4.5332355}
   m_EdgeRadius: 0
 --- !u!1 &1688659476
 GameObject:
@@ -12524,7 +12613,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.2082062, y: -1.0109463}
+  m_Offset: {x: 2.9999619, y: -0.5548296}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12535,7 +12624,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7780457, y: 4.1396866}
+  m_Size: {x: 1.1523743, y: 5.4396152}
   m_EdgeRadius: 0
 --- !u!1 &1909185589
 GameObject:
@@ -12655,7 +12744,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 39f7bfcbf92e77c4283ed8bcadab32d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7b21bb6cd5fd274d902b3cf3498e1e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13695,7 +13784,7 @@ Transform:
   m_GameObject: {fileID: 2076428981}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13742,7 +13831,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e0fdbae1efc2682469c2e8e5f2ad5396, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 612b3d5bfccd81e44a61999ba866ed6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
