@@ -59,9 +59,10 @@ public class CompendiumUI : UI
         cropImage.sprite = plantSeedList[index].seedSprite;
         seedImage.sprite = plantSeedList[index].cropSprite;
 
-        harvestQuant.text = "Crops per Harvest: " + plantSeedList[index].produceCount.ToString() + " Crops.";
-        harvestTime.text = "Days until Harvest: " + (plantSeedList[index].growthStages.Length - 1).ToString() + " Days.";
-        seedPrice.text = "Crop Seed Price: $" + plantSeedList[index].buySeedPrice.ToString();
+        harvestQuant.text = "Crops per Harvest: " + plantSeedList[index].produceCount.ToString() + (plantSeedList[index].produceCount == 1 ? " Crop." : " Crops.");
+        harvestTime.text = "Days until Harvest: " + (plantSeedList[index].growthStages.Length - 1).ToString() + 
+            ((plantSeedList[index].growthStages.Length - 1) == 1 ? " Day." : " Days.");
+        seedPrice.text = "Seed Buy Price: $" + plantSeedList[index].buySeedPrice.ToString();
         sellPrice.text = "Crop Sell Price: $" + plantSeedList[index].sellPrice.ToString();
         cropName.text = plantSeedList[index].cropName;
         description.text = plantSeedList[index].description;
