@@ -3230,10 +3230,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.091603056
+    y: 0.33333334
+    width: 0.8142494
+    height: 0.3314917
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -5775,7 +5775,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 2122255587}
   taxText: {fileID: 394755867}
   dayText: {fileID: 2062187326}
-  initialLoss: 25
+  initialLoss: 50
   compostPickupPrefab: {fileID: 682250143938418544, guid: 7304721130df41c448862e07504c2377, type: 3}
   trCompSpawn: {x: 114, y: 24}
   blCompSpawn: {x: 83, y: -18}

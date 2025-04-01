@@ -60,14 +60,14 @@ public class SeedUI : UI
     {
         currentSeedPurch++;
         currentSeedPurch %= plantSeedList.Length;
-        currentSeedPurch = currentSeedHold < 0 ? currentSeedPurch + plantSeedList.Length : currentSeedPurch;
+        currentSeedPurch = currentSeedPurch < 0 ? currentSeedPurch + plantSeedList.Length : currentSeedPurch;
         UpdateData();
     }
     public void DecrementSeedPurch()
     {
         currentSeedPurch--;
         currentSeedPurch %= plantSeedList.Length;
-        currentSeedPurch = currentSeedHold < 0 ? currentSeedPurch + plantSeedList.Length : currentSeedPurch;
+        currentSeedPurch = currentSeedPurch < 0 ? currentSeedPurch + plantSeedList.Length : currentSeedPurch;
         UpdateData();
     }
     public void IncrementSeedHold()

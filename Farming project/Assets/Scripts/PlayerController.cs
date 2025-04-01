@@ -149,7 +149,8 @@ public class PlayerController : MonoBehaviour
             HoldNothing();
             return;
         }
-        ChangeHeld(playerHolding, heldPlantData, heldUI.CurrentSprite(), 0);
+        if (playerHolding == HELD.SEED) ChangeHeld(playerHolding, heldPlantData, heldUI.CurrentSprite(), holdingCount);
+        else ChangeHeld(playerHolding, heldPlantData, heldUI.CurrentSprite(), 0);
     }
     public void ChangeClosestInteract(Interactable newInteract)
     {
