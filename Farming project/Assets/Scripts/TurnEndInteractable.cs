@@ -17,6 +17,7 @@ public class TurnEndInteractable : Interactable
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
+        base.OnInteract(playerHoldState, seedData);
         StartCoroutine(WaitAndWork());
         screenAnimator.Play("FadeAndReturn");
         playerController.SetPlayerControl(false);

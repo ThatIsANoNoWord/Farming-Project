@@ -33,7 +33,6 @@ public class Plot : MonoBehaviour, ITurnable
         plantingSpots.AddRange(GetComponentsInChildren<PlantingSpot>(true));
 
         UpdatePlotQuality(0);
-        UpdateSign();
     }
 
     public int GetQuality()
@@ -52,6 +51,11 @@ public class Plot : MonoBehaviour, ITurnable
         moundObject.SetActive(true);
     }
 
+    public int GetPending()
+    {
+        return pendingOrganicMatter;
+    }
+
     public void NoConuco()
     {
         if (pendingOrganicMatter == 0) return;
@@ -60,36 +64,22 @@ public class Plot : MonoBehaviour, ITurnable
         plantingSpots.ForEach(x => x.EmptyPlot());
     }
 
-    public void AttemptPurchase()
+    public int AttemptPurchase()
     {
         if (gameManager.GetMoney() >= buyPrice)
         {
             gameManager.ChangeMoney(-buyPrice);
             plotActive = true;
             inactiveObject.SetActive(false);
-            UpdateSign();
+            return 1;
         }
-        else
-        {
-            // Make an error or smthn idk you do you
-        }
+        // Make an error or smthn idk you do you
+        return -1;
     }
 
-    public void UpdateSign()
+    public float QualityRatio()
     {
-        if (plotActive)
-        {
-            costText.gameObject.SetActive(false);
-            qualitySlider.gameObject.SetActive(true);
-            qualitySlider.value = quality / 100f;
-            fillImage.color = barGradient.Evaluate(quality / 100f);
-        }
-        else
-        {
-            costText.gameObject.SetActive(true);
-            qualitySlider.gameObject.SetActive(false);
-            costText.text = "Cost: \n$" + buyPrice.ToString();
-        }
+        return quality / 100f;
     }
 
     public void UpdatePlotQuality(int number)
@@ -130,7 +120,6 @@ public class Plot : MonoBehaviour, ITurnable
         }
         plants = Mathf.Clamp(plants - 2, 0, int.MaxValue);
         UpdatePlotQuality(-plants);
-        UpdateSign();
     }
     public int Prio()
     {

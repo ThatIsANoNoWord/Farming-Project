@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIActivatorInteractable : Interactable
+public class PlotSignActivator : Interactable
 {
-    public GameObject seedUI;
+    SignUI UI;
+    Plot parentPlot;
     PlayerController playerController;
     private void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
+        parentPlot = GetComponentInParent<Plot>();
+        UI = FindObjectOfType<SignUI>();
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
         base.OnInteract(playerHoldState, seedData);
-        seedUI.SetActive(true);
+        UI.gameObject.SetActive(true);
         playerController.SetPlayerControl(false);
-        seedUI.GetComponent<UI>().UpdateData();
+        UI.UpdateData(parentPlot);
     }
 }

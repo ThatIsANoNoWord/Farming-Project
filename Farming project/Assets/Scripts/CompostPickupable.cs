@@ -39,6 +39,7 @@ public class CompostPickupable : Interactable, ITurnable
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
+        base.OnInteract(playerHoldState, seedData);
         playerController.ChangeHeld(HELD.COMPOST, null, gameManager.compostSprite, 1);
         Destroy(gameObject);
     }

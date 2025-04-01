@@ -41,6 +41,10 @@ public class CompostUI : UI, ITurnable
     }
     public void HoldCompost()
     {
+        if (playerController.GetHeld() != HELD.NOTHING && playerController.GetHeld() != HELD.COMPOST)
+        {
+            return;
+        }
         if (compostContained == 0)
         {
             compostContained = playerController.GetHeldQuant();

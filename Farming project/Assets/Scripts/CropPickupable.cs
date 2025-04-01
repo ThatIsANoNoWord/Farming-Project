@@ -30,6 +30,7 @@ public class CropPickupable : Interactable, ITurnable
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
+        base.OnInteract(playerHoldState, seedData);
         playerController.ChangeHeld(HELD.CROP, cropPlant, cropPlant.cropSprite, cropCount);
         Destroy(gameObject);
     }

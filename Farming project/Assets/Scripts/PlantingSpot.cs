@@ -26,6 +26,7 @@ public class PlantingSpot : Interactable
 
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
+        base.OnInteract(playerHoldState, seedData);
         if (!parentPlot.plotActive)
         {
             parentPlot.AttemptPurchase();
