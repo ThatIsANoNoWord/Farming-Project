@@ -43,7 +43,7 @@ public class SignUI : UI
         {
             purchaseSub.SetActive(false);
             informationSub.SetActive(true);
-            quantText.text = "$" + plot.GetPending().ToString();
+            quantText.text = plot.GetPending().ToString();
             qualitySlider.value = plot.QualityRatio();
             fillImage.color = barGradient.Evaluate(plot.QualityRatio());
             string text = "";

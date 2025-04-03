@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorPlayerMove : MonoBehaviour
+public class DoorPlayerMove : Interactable
 {
     public GameObject player;
     public Transform newPosition;
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
-        if (collision.gameObject == player)
-        {
-            player.transform.position = newPosition.position;
-        }
+        player.transform.position = newPosition.position;
     }
 }

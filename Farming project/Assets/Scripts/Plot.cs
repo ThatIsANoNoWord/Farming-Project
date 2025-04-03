@@ -10,10 +10,6 @@ public class Plot : MonoBehaviour, ITurnable
     [SerializeField] private int quality;
     [SerializeField] private GameObject moundObject;
     [SerializeField] private GameObject inactiveObject;
-    [SerializeField] private Gradient barGradient;
-    [SerializeField] private Slider qualitySlider;
-    [SerializeField] private Image fillImage;
-    [SerializeField] private TextMeshProUGUI costText;
     public Sprite[] qualitySprites;
     private SpriteRenderer spriteRenderer;
     private int pendingOrganicMatter;
@@ -31,6 +27,8 @@ public class Plot : MonoBehaviour, ITurnable
         inactiveObject.SetActive(!plotActive);
         plantingSpots = new List<PlantingSpot>();
         plantingSpots.AddRange(GetComponentsInChildren<PlantingSpot>(true));
+
+        if (!plotActive) plantingSpots.ForEach(x => x.gameObject.GetComponent<Collider2D>().enabled = false);
 
         UpdatePlotQuality(0);
     }
@@ -71,9 +69,9 @@ public class Plot : MonoBehaviour, ITurnable
             gameManager.ChangeMoney(-buyPrice);
             plotActive = true;
             inactiveObject.SetActive(false);
+            plantingSpots.ForEach(x => x.gameObject.GetComponent<Collider2D>().enabled = true);
             return 1;
         }
-        // Make an error or smthn idk you do you
         return -1;
     }
 
@@ -97,7 +95,7 @@ public class Plot : MonoBehaviour, ITurnable
         {
             case >= 80:
                 return SoilQuality.Excellent;
-            case >= 40:
+            case >= 50:
                 return SoilQuality.Average;
             case >= 20:
                 return SoilQuality.Poor;
