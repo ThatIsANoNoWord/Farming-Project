@@ -19,9 +19,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b65d0dbb91f189f42ae7a1de9b93b5d0, type: 3}
   - {fileID: 21300000, guid: 8b92404a48bbd984792eb7507deb0c06, type: 3}
   produceCount: 3
-  sellPrice: 10
+  sellPrice: 5
   buySeedPrice: 50
   requiredSoilQuality: 1
-  description: '
-
-    Yam'
+  description: Though yams are tuber crops that come from the starchy roots of the
+    plant, the plants that yams grow from come in the form of vines.

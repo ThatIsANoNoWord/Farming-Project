@@ -104,7 +104,7 @@ public class PlantingSpot : Interactable
 
     void GrowPlant()
     {
-        if (parentPlot.GetQuality() < (int)growingPlant.requiredSoilQuality)
+        if (!parentPlot.GoodEnoughSoil(growingPlant.requiredSoilQuality))
         {
             EmptyPlot();
             return;

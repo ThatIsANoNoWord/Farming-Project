@@ -22,4 +22,4 @@ MonoBehaviour:
   sellPrice: 100
   buySeedPrice: 200
   requiredSoilQuality: 2
-  description: 
+  description: This seems like a pretty plain plant.

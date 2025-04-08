@@ -103,6 +103,29 @@ public class Plot : MonoBehaviour, ITurnable
                 return SoilQuality.Unfarmable;
         }
     }
+    public bool GoodEnoughSoil(SoilQuality requirement)
+    {
+        int minReq = SQToMinInt(requirement);
+        print("GROW");
+        print(quality);
+        print(minReq);
+        return quality >= minReq;
+    }
+
+    public int SQToMinInt(SoilQuality quality)
+    {
+        switch (quality)
+        {
+            case SoilQuality.Excellent:
+                return 80;
+            case SoilQuality.Average:
+                return 50;
+            case SoilQuality.Poor:
+                return 20;
+            default:
+                return 0;
+        }
+    }
 
     public void Turn()
     {
