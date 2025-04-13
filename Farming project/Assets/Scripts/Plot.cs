@@ -31,7 +31,7 @@ public class Plot : MonoBehaviour, ITurnable
 
         // Randomize the starting quality of the land except for Plot #2
         // Randomize with a curve: higher values are more rare
-        float randomValue = Mathf.Pow(Random.value, 5);
+        float randomValue = Mathf.Pow(Random.value, 7);
         quality = Mathf.FloorToInt(randomValue * 100);
         if (gameObject.name == "Plot-02") quality = 30;
 
@@ -150,17 +150,13 @@ public class Plot : MonoBehaviour, ITurnable
     {
         UpdatePlotQuality(pendingOrganicMatter);
         plantingSpots.ForEach(x => x.ProcessTurn());
-        int plants = 0;
-        foreach (PlantingSpot planting in plantingSpots)
-        {
-            if (!planting.IsEmpty())
-            {
-                plants++;
-            }
-        }
-        plants = Mathf.Clamp(plants - 2, 0, int.MaxValue);
-        UpdatePlotQuality(-plants);
+
+        int plants = plantingSpots.Count(spot => !spot.IsEmpty());
+
+        plants = Mathf.Clamp(plants - 1, 0, int.MaxValue);
+        UpdatePlotQuality(-plants - 1); // -1 by default for all land over time
     }
+
     public int Prio()
     {
         return 0;
