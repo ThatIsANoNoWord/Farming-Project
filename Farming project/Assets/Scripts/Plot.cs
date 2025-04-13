@@ -113,37 +113,17 @@ public class Plot : MonoBehaviour, ITurnable
 
     public SoilQuality IntToSQ(int quality)
     {
-        switch (quality)
+        return quality switch
         {
-            case >= 80:
-                return SoilQuality.Excellent;
-            case >= 50:
-                return SoilQuality.Average;
-            case >= 20:
-                return SoilQuality.Poor;
-            default:
-                return SoilQuality.Unfarmable;
-        }
+            >= 80 => SoilQuality.Excellent,
+            >= 50 => SoilQuality.Average,
+            >= 20 => SoilQuality.Poor,
+            _ => SoilQuality.Unfarmable,
+        };
     }
     public bool GoodEnoughSoil(SoilQuality requirement)
     {
-        int minReq = SQToMinInt(requirement);
-        return quality >= minReq;
-    }
-
-    public int SQToMinInt(SoilQuality quality)
-    {
-        switch (quality)
-        {
-            case SoilQuality.Excellent:
-                return 80;
-            case SoilQuality.Average:
-                return 50;
-            case SoilQuality.Poor:
-                return 20;
-            default:
-                return 0;
-        }
+        return (int) requirement <= (int) plotQuality;
     }
 
     public void Turn()

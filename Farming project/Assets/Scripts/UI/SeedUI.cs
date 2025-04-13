@@ -49,7 +49,7 @@ public class SeedUI : UI
         }
         playerController.ChangeHeld(HELD.SEED, plantSeedList[currentSeedHold], plantSeedList[currentSeedHold].seedSprite, crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]));
     }
-    
+
     public void ReturnControl()
     {
         playerController.SetPlayerControl(true);
@@ -80,10 +80,8 @@ public class SeedUI : UI
 
         do {
             currentSeedHold = (currentSeedHold + 1) % plantSeedList.Length;
-            if (crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]) > 0)
-                break;
-        }
-        while (currentSeedHold != originalIndex);
+            if (crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]) > 0) break;
+        } while (currentSeedHold != originalIndex);
 
         UpdateData();
     }
@@ -93,11 +91,9 @@ public class SeedUI : UI
         int originalIndex = currentSeedHold;
 
         do {
-            currentSeedHold = (currentSeedHold - 1) % plantSeedList.Length;
-            if (crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]) > 0)
-                break;
-        }
-        while (currentSeedHold != originalIndex);
+            currentSeedHold = (currentSeedHold - 1 + plantSeedList.Length) % plantSeedList.Length;
+            if (crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]) > 0) break;
+        } while (currentSeedHold != originalIndex);
 
         UpdateData();
     }

@@ -14,31 +14,36 @@ public class CompostUI : UI, ITurnable
     public Animator needToHoldCropWarning;
     PlayerController playerController;
     GameManager gameManager;
-    int allocated = 0;
     int compostContained = 0;
-    PlantData lastPlant;
+    private Stack<PlantData> allocatedPlants = new();
+
     private void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         gameManager = FindObjectOfType<GameManager>();
 
-        lastPlant = null;
         UpdateData();
 
         gameObject.SetActive(false);
     }
     public void AllocateCrop()
     {
-        if(playerController.GetHeld() != HELD.CROP)
-        {
-            needToHoldCropWarning.Play("PopupText");
-            return;
+        // Remove from compost instead of put in
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+            PlantData plant = allocatedPlants.Pop();
+
+            playerController.ChangeHeld(HELD.CROP, plant, plant.cropSprite, 1);
+        } else {
+            if (playerController.GetHeld() != HELD.CROP) needToHoldCropWarning.Play("PopupText");
+            else {
+                allocatedPlants.Push(playerController.GetHeldPlantData());
+                playerController.DecrementHeld();
+            }
         }
-        allocated++;
-        lastPlant = playerController.GetHeldPlantData();
+        
         UpdateData();
-        playerController.DecrementHeld();
     }
+
     public void HoldCompost()
     {
         if (playerController.GetHeld() != HELD.NOTHING && playerController.GetHeld() != HELD.COMPOST)
@@ -63,24 +68,27 @@ public class CompostUI : UI, ITurnable
     }
     public override void UpdateData()
     {
-        UpdateData(lastPlant);
+        if (allocatedPlants.Count > 0) UpdateData(allocatedPlants.Peek());
+        else UpdateData(null);
     }
     public void UpdateData(PlantData plant)
     {
         cropAllocImage.sprite = plant != null ? plant.cropSprite : null;
         cropAllocImage.color = new Color(1, 1, 1, plant != null ? 1 : 0);
 
-        allocatedQuant.text = allocated.ToString();
+        allocatedQuant.text = allocatedPlants.Count.ToString();
         compostQuant.text = compostContained.ToString();
     }
 
     public void Turn()
     {
-        compostContained = allocated * 3;
-        allocated = 0;
-        lastPlant = null;
+        while (allocatedPlants.Count > 0) {
+            compostContained += allocatedPlants.Pop().compostCount;
+        }
+
         UpdateData();
     }
+    
     public int Prio()
     {
         return 0;

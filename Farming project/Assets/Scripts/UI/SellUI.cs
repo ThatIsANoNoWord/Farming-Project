@@ -13,13 +13,11 @@ public class SellUI : UI, ITurnable
     public Animator needToHoldCropWarning;
     PlayerController playerController;
     GameManager gameManager;
-    List<PlantData> plantsToBeSold = new List<PlantData>();
+    private Stack<PlantData> allocatedPlants = new();
     private void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
         gameManager = FindObjectOfType<GameManager>();
-
-        plantsToBeSold = new List<PlantData>();
 
         UpdateData();
 
@@ -27,15 +25,22 @@ public class SellUI : UI, ITurnable
     }
     public void AllocateCrop()
     {
-        if (playerController.GetHeld() != HELD.CROP)
-        {
-            needToHoldCropWarning.Play("PopupText");
-            return;
+        // Remove from compost instead of put in
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+            PlantData plant = allocatedPlants.Pop();
+
+            playerController.ChangeHeld(HELD.CROP, plant, plant.cropSprite, 1);
+        } else {
+            if (playerController.GetHeld() != HELD.CROP) needToHoldCropWarning.Play("PopupText");
+            else {
+                allocatedPlants.Push(playerController.GetHeldPlantData());
+                playerController.DecrementHeld();
+            }
         }
-        plantsToBeSold.Add(playerController.GetHeldPlantData());
+        
         UpdateData();
-        playerController.DecrementHeld();
     }
+
     public void ReturnControl()
     {
         playerController.SetPlayerControl(true);
@@ -43,23 +48,24 @@ public class SellUI : UI, ITurnable
     }
     public override void UpdateData()
     {
-        cropAllocImage.sprite = plantsToBeSold.Count == 0 ? null : plantsToBeSold.ToArray()[plantsToBeSold.Count - 1].cropSprite;
-        cropAllocImage.color = new Color(1, 1, 1, plantsToBeSold.Count == 0 ? 0 : 1);
+        cropAllocImage.sprite = allocatedPlants.Count == 0 ? null : allocatedPlants.Peek().cropSprite;
+        cropAllocImage.color = new Color(1, 1, 1, allocatedPlants.Count == 0 ? 0 : 1);
 
-        allocatedQuant.text = plantsToBeSold.Count.ToString();
+        allocatedQuant.text = allocatedPlants.Count.ToString();
     }
 
     public void Turn()
     {
-        int gains = 0;
-        if (plantsToBeSold.Count > 0)
-        {
-            plantsToBeSold.ForEach(x => gains += x.sellPrice);
-            plantsToBeSold.RemoveAll(x => true);
+        int profit = 0;
+        while (allocatedPlants.Count > 0) {
+            profit += allocatedPlants.Pop().sellPrice;
         }
-        gameManager.ChangeMoney(gains);
+        
+        gameManager.ChangeMoney(profit);
+
         UpdateData();
     }
+
     public int Prio()
     {
         return 0;

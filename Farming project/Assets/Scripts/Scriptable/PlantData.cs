@@ -11,6 +11,7 @@ public class PlantData : ScriptableObject
     public int produceCount;
     public int sellPrice;
     public int buySeedPrice;
+    public int compostCount;
     public SoilQuality requiredSoilQuality;
     [TextArea]
     public string description;
