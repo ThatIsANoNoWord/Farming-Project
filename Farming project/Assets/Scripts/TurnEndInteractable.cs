@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,10 @@ public class TurnEndInteractable : Interactable
     List<ITurnable> allTurnEnd;
     public float waitWorkTime;
     public float waitTime;
+    public float delayBeforeNextSleep;
     public Animator screenAnimator;
     PlayerController playerController;
+    private DateTime sleepDelay = DateTime.Now;
 
     private void Start()
     {
@@ -17,6 +20,9 @@ public class TurnEndInteractable : Interactable
     }
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
+        if (DateTime.Now < sleepDelay) return;
+        sleepDelay = DateTime.Now.AddSeconds(delayBeforeNextSleep);
+
         base.OnInteract(playerHoldState, seedData);
         StartCoroutine(WaitAndWork());
         screenAnimator.Play("FadeAndReturn");
