@@ -58,9 +58,11 @@ public class SeedUI : UI
     }
     public void IncrementSeedPurch()
     {
+        
         currentSeedPurch++;
         currentSeedPurch %= plantSeedList.Length;
         currentSeedPurch = currentSeedPurch < 0 ? currentSeedPurch + plantSeedList.Length : currentSeedPurch;
+
         UpdateData();
     }
     public void DecrementSeedPurch()
@@ -72,18 +74,32 @@ public class SeedUI : UI
     }
     public void IncrementSeedHold()
     {
-        currentSeedHold++;
-        currentSeedHold %= plantSeedList.Length;
-        currentSeedHold = currentSeedHold < 0 ? currentSeedHold + plantSeedList.Length : currentSeedHold;
+        int originalIndex = currentSeedHold;
+
+        do {
+            currentSeedHold = (currentSeedHold + 1) % plantSeedList.Length;
+            if (crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]) > 0)
+                break;
+        }
+        while (currentSeedHold != originalIndex);
+
         UpdateData();
     }
+
     public void DecrementSeedHold()
     {
-        currentSeedHold--;
-        currentSeedHold %= plantSeedList.Length;
-        currentSeedHold = currentSeedHold < 0 ? currentSeedHold + plantSeedList.Length : currentSeedHold;
+        int originalIndex = currentSeedHold;
+
+        do {
+            currentSeedHold = (currentSeedHold - 1) % plantSeedList.Length;
+            if (crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]) > 0)
+                break;
+        }
+        while (currentSeedHold != originalIndex);
+
         UpdateData();
     }
+
     public override void UpdateData()
     {
         seedPurchImage.sprite = plantSeedList[currentSeedPurch].seedSprite;
