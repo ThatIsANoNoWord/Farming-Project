@@ -82,13 +82,14 @@ public class CompostUI : UI, ITurnable
 
     public void Turn()
     {
+        compostContained = 0;
         while (allocatedPlants.Count > 0) {
             compostContained += allocatedPlants.Pop().compostCount;
         }
 
         UpdateData();
     }
-    
+
     public int Prio()
     {
         return 0;

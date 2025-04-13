@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ITurnable
 {
     PlayerControl controlInput;
     public float movementSpeed;
@@ -180,6 +180,16 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = moveDirection.normalized * Time.fixedDeltaTime * movementSpeed;
         spamPrevention = Mathf.Clamp(spamPrevention - Time.fixedDeltaTime, 0, float.MaxValue);
+    }
+
+    public void Turn()
+    {
+        ChangeHeld(HELD.NOTHING, null, null, 0, false);
+    }
+
+    public int Prio()
+    {
+        return 0;
     }
 }
 

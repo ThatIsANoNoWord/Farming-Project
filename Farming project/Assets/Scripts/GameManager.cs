@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour, ITurnable
             droppedCrop.GetComponent<CompostPickupable>().Initial(1);
         }
 
-        dayText.text = "Day " + turnNumber.ToString();
+        dayText.text = "Turn " + turnNumber.ToString();
     }
     public int Prio()
     {
