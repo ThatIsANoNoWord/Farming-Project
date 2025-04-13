@@ -126,6 +126,18 @@ public class Plot : MonoBehaviour, ITurnable
         return (int) requirement <= (int) plotQuality;
     }
 
+    public bool EveryoneEmpty()
+    {
+        foreach(PlantingSpot planting in plantingSpots)
+        {
+            if (!planting.IsEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void Turn()
     {
         UpdatePlotQuality(pendingOrganicMatter);

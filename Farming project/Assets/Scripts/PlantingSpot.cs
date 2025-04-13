@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlantingSpot : Interactable
 {
     public Sprite emptyPlantableSprite;
+    public Animator warnAnimator;
     SpriteRenderer growingSprite;
     PlantData growingPlant;
     SpotStates spotCurrState;
@@ -46,6 +47,11 @@ public class PlantingSpot : Interactable
                     playerController.DecrementHeld();
                     return;
                 case HELD.COMPOST:
+                    if (!parentPlot.EveryoneEmpty())
+                    {
+                        // Warning
+                        return;
+                    }
                     parentPlot.MakeConuco(1);
                     playerController.DecrementHeld();
                     return;
@@ -68,6 +74,7 @@ public class PlantingSpot : Interactable
         }
         if (spotCurrState == SpotStates.Composting && playerHoldState == HELD.SEED)
         {
+            // If the soil is not high enough quality for the plant, do nothing.
             if (!parentPlot.GoodEnoughSoil(playerController.GetHeldPlantData().requiredSoilQuality)) return;
 
             SeedPlanted(playerController.GetHeldPlantData());

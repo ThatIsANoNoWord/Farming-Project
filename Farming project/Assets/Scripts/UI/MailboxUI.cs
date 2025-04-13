@@ -7,7 +7,8 @@ using System.Linq;
 using System;
 
 
-public class MailboxUI : UI, ITurnable {
+public class MailboxUI : UI, ITurnable 
+{
     public GameObject buttonTemplate; // Assign the original button from the Content in the inspector
     public Transform contentParent;   // The Content object inside the ScrollView
     private int currentTurn = 1;
