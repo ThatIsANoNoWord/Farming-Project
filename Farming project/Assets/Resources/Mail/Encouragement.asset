@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
   m_Name: Encouragement
   m_EditorClassIdentifier: 
-  title: 
-  bodyContent: 
+  title: Words of Encouragement
+  bodyContent: "Thank you so much for participating in the Food Sovereignty Act trial.\nKnowing
+    that real farmers are working the land\u2014our land\u2014like it used to be,
+    brings joy to my heart.\n\nYou don\u2019t know me. And judging by my situation,
+    it seems we might never meet in person. But I have you to thank for making my
+    dreams come true.\n\nAll I ask is that you keep going, no matter how rough things
+    get.\n\nBest of luck."
   isRead: 0
-  dayAppear: 0
+  dayAppear: 9

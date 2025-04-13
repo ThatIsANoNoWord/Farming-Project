@@ -12,19 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
   m_Name: Heya Farmer
   m_EditorClassIdentifier: 
-  title: Heya Farmer!
-  author: John Farmer
-  bodyContent: 'You might not know me, but I''m another farmer that got land as part
-    of the Act! I''ve always been advocating for this Act, and now that the Act is
-    in place, us farmers finally get the land and recognition we deserve!
-
-
-    Anyways,
-    did you know that compost can appear all around the farm? You can pick them up
-    and use them to compost on the land you own no problem! I look forward to hearing
-    of your success, fellow farmer!
-
-
-    Regards,'
+  title: Conuco Techniques
+  bodyContent: "Heya Farmer!\n\nYou might not know me, but I'm another farmer who
+    also got land as part of the Food Sovereignty Act! \n\nHere's a quick tip: you'll
+    often find materials around your farm that can be composted\u2014don't let them
+    go to waste! You can bury them in your land to improve the soil quality! I'd
+    recommend using the Conuco technique. It's a traditional Puerto Rican farming
+    method where crops are planted on small mounds that help maximize land use and
+    preserve soil fertility. \n\nI look forward to hearing about your success, fellow
+    farmer! \xA1Vamos pa'lante\n\nFarmer Jos\xE9 Rivera"
   isRead: 0
   dayAppear: 2

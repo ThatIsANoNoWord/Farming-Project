@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
   m_Name: Last Words
   m_EditorClassIdentifier: 
-  title: 
-  bodyContent: 
+  title: Last Words
+  bodyContent: "Hey pal,\n\nI might not be sending letters anymore\u2014I barely
+    scraped by paying the last tax.\n\nIt\u2019s time for me to focus. You should
+    do the same. The farm's no joke, and if we're gonna keep this land, we\u2019ve
+    gotta stay sharp and work harder than ever.\n\nWishing you luck,\nFarmer Jos\xE9
+    Rivera"
   isRead: 0
-  dayAppear: 0
+  dayAppear: 14

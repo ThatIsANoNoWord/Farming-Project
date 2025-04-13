@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
   m_Name: Tax Reminder 1
   m_EditorClassIdentifier: 
-  title: 
-  bodyContent: 
+  title: GOBIERNO DE PUERTO RICO - TAX REMINDER
+  bodyContent: "Official tax letters will no longer be sent to farmers. This does
+    not mean the farm tax has ended. Please remember to continue making your payments
+    as required. Failure to do so may result in penalties.\n\nSincerely,\nLinette
+    D\xEDaz Mel\xE9ndez\nDepartamento de Agricultura Comunitaria\n"
   isRead: 0
-  dayAppear: 0
+  dayAppear: 17

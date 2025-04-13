@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
   m_Name: Tax Intro
   m_EditorClassIdentifier: 
-  title: 
-  author: 
-  bodyContent: 
+  title: GOBIERNO DE PUERTO RICO - TAX NOTICE
+  bodyContent: "As a participant in Puerto Rico\u2019s Food Sovereignty Act, you
+    are entrusted with land that is vital to our island\u2019s future. To ensure
+    the sustainability of this initiative, all farmers are required to pay a recurring
+    agricultural tax. This tax helps maintain the program and expand it to more communities
+    across the archipelago.\n\nThe agricultural tax is collected every 6 days. Failure
+    to pay will result in the forfeiture of your land rights under the Act. Your
+    commitment not only secures your own farm, but also supports food justice and
+    local resilience across Puerto Rico.\n\nThe next tax is due tomorrow. The exact
+    amount will be provided in due time. Prepare accordingly, and thank you for being
+    part of this new movement toward sovereignty.\n\nCon respeto,\nLinette D\xEDaz
+    Mel\xE9ndez\nDepartamento de Agricultura Comunitaria"
   isRead: 0
-  dayAppear: 0
+  dayAppear: 5
