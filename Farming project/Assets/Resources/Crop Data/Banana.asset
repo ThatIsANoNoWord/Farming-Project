@@ -21,5 +21,6 @@ MonoBehaviour:
   produceCount: 1
   sellPrice: 100
   buySeedPrice: 200
+  compostCount: 2
   requiredSoilQuality: 2
   description: This seems like a pretty plain plant.

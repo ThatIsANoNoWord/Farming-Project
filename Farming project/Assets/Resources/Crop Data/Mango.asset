@@ -22,6 +22,7 @@ MonoBehaviour:
   produceCount: 1
   sellPrice: 1000
   buySeedPrice: 600
+  compostCount: 4
   requiredSoilQuality: 3
   description: 'What did the man do?
 

@@ -22,6 +22,7 @@ MonoBehaviour:
   produceCount: 8
   sellPrice: 20
   buySeedPrice: 250
+  compostCount: 2
   requiredSoilQuality: 2
   description: A unique, distinct fruit with many different varieties. Guavas usually
     have a green skin with sweet, red flesh, but this may differ with varieties.

@@ -21,6 +21,7 @@ MonoBehaviour:
   produceCount: 1
   sellPrice: 30
   buySeedPrice: 70
+  compostCount: 3
   requiredSoilQuality: 1
   description: A nice, starchy and tuberous root crop that stands as one of the greatest
-    sources of carbohydrates in teh world.
+    sources of carbohydrates in the world.

@@ -21,6 +21,7 @@ MonoBehaviour:
   produceCount: 5
   sellPrice: 15
   buySeedPrice: 150
+  compostCount: 2
   requiredSoilQuality: 2
   description: A large family of vegetables with many different varieties, such as
     the pumpkin or the zucchini.

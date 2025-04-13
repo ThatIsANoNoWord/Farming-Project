@@ -21,6 +21,7 @@ MonoBehaviour:
   produceCount: 3
   sellPrice: 5
   buySeedPrice: 50
+  compostCount: 1
   requiredSoilQuality: 1
   description: Though yams are tuber crops that come from the starchy roots of the
     plant, the plants that yams grow from come in the form of vines.

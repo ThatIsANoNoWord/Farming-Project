@@ -21,6 +21,7 @@ MonoBehaviour:
   produceCount: 10
   sellPrice: 40
   buySeedPrice: 500
+  compostCount: 1
   requiredSoilQuality: 3
   description: Known primarily from their seeds, which can be processed into a very
     popular drink that contains the stimulant caffeine.
