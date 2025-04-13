@@ -15,6 +15,8 @@ public class CompendiumUI : UI
     public TextMeshProUGUI harvestTime;
     public TextMeshProUGUI sellPrice;
     public TextMeshProUGUI seedPrice;
+    public TextMeshProUGUI compostAmount;
+
     public TextMeshProUGUI landQualityNeed;
     public TextMeshProUGUI description;
     PlayerController playerController;
@@ -64,6 +66,7 @@ public class CompendiumUI : UI
             ((plantSeedList[index].growthStages.Length - 1) == 1 ? " Day." : " Days.");
         seedPrice.text = "Seed Buy Price: $" + plantSeedList[index].buySeedPrice.ToString();
         sellPrice.text = "Crop Sell Price: $" + plantSeedList[index].sellPrice.ToString();
+        compostAmount.text = $"Compost Amount: ${plantSeedList[index].compostCount}";
         cropName.text = plantSeedList[index].cropName;
         description.text = plantSeedList[index].description;
 

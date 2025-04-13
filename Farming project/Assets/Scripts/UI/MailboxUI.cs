@@ -76,7 +76,6 @@ public class MailboxUI : UI, ITurnable {
     }
 
     bool UnopenedMailExists() {
-        Debug.Log( mailButtonMap.Any(pair => !pair.Key.isRead && pair.Value.activeSelf));
         return mailButtonMap.Any(pair => !pair.Key.isRead && pair.Value.activeSelf);
     }
 
