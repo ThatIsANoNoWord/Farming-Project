@@ -41,6 +41,7 @@ public class SeedUI : UI
     public void HoldSeed()
     {
         if (crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]) <= 0) return;
+
         if (playerController.GetHeld() == HELD.SEED && playerController.GetHeldPlantData() == plantSeedList[currentSeedHold].seedSprite)
         {
             playerController.HoldNothing();
@@ -48,6 +49,7 @@ public class SeedUI : UI
         }
         playerController.ChangeHeld(HELD.SEED, plantSeedList[currentSeedHold], plantSeedList[currentSeedHold].seedSprite, crops.GetPlantCurrQuant(plantSeedList[currentSeedHold]));
     }
+    
     public void ReturnControl()
     {
         playerController.SetPlayerControl(true);

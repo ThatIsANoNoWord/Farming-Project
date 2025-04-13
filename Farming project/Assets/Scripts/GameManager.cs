@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour, ITurnable
     {
         // PlantDatabase.Initialize();
         cropList = new QuantList(plantDataTypes);
-        cropList.IncreaseCap(plantDataTypes[0], 3);
+        cropList.IncreaseQuantity(plantDataTypes[0], 3);
         moneyUI = FindObjectOfType<MoneyUI>();
         plots = new List<Plot>();
         plots.AddRange(FindObjectsOfType<Plot>());
@@ -68,7 +68,12 @@ public class GameManager : MonoBehaviour, ITurnable
 
     public void DecrementSeed(PlantData plant)
     {
-        cropList.DecreaseCurr(plant, 1);
+        cropList.DecreaseQuantity(plant, 1);
+    }
+
+    public void IncrementSeed(PlantData plant)
+    {
+        cropList.IncreaseQuantity(plant, 1);
     }
 
     // Tries to purchase the seed for the player.
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour, ITurnable
             return -1;
         }
         ChangeMoney(-seedPurchased.buySeedPrice);
-        cropList.IncreaseCap(seedPurchased, 1);
+        cropList.IncreaseQuantity(seedPurchased, 1);
         return 0;
     }
 
@@ -113,7 +118,7 @@ public class GameManager : MonoBehaviour, ITurnable
             GameObject droppedCrop = Instantiate(compostPickupPrefab, newPos, Quaternion.identity);
             droppedCrop.GetComponent<CompostPickupable>().Initial(1);
         }
-        cropList.ResetValues();
+
         dayText.text = "Day " + turnNumber.ToString();
     }
     public int Prio()
@@ -124,89 +129,35 @@ public class GameManager : MonoBehaviour, ITurnable
 
 public class QuantList
 {
-    readonly List<Quant> quantList;
+    readonly Dictionary<PlantData, int> plantQuantities;
 
     public QuantList(PlantData[] plantDatas)
     {
-        quantList = new List<Quant>();
-        for (int i = 0; i < plantDatas.Length; i++)
+        plantQuantities = new Dictionary<PlantData, int>();
+        foreach (var plant in plantDatas)
         {
-            quantList.Add(new Quant(0, 0, plantDatas[i]));
+            plantQuantities[plant] = 0;
         }
     }
 
-    public void ResetValues()
+    public void DecreaseQuantity(PlantData plant, int minusCurr)
     {
-        quantList.ForEach(x => x.ResetCurr());
-    }
-
-    public void IncreaseCap(PlantData plant, int plusCap)
-    {
-        for (int i = 0; i < quantList.Count; i++)
+        if (plantQuantities.ContainsKey(plant))
         {
-            if (quantList[i].MatchPlant(plant))
-            {
-                quantList[i].IncreaseCapacity(plusCap);
-                return;
-            }
-        }
-    }
-    public void DecreaseCurr(PlantData plant, int minusCurr)
-    {
-        for (int i = 0; i < quantList.Count; i++)
-        {
-            if (quantList[i].MatchPlant(plant))
-            {
-                quantList[i].DecreaseCurr(minusCurr);
-                return;
-            }
+            plantQuantities[plant] = Mathf.Max(plantQuantities[plant] - minusCurr, 0);
         }
     }
 
     public int GetPlantCurrQuant(PlantData plant)
     {
-        Quant target = quantList.Find(x => x.MatchPlant(plant));
-        return target != null ? target.GetCurrQuant() : -1;
-    }
-}
-
-class Quant
-{
-    int seedTotQuantity;
-    int seedCurrQuantity;
-    int cropQuantity;
-    PlantData plant;
-
-    public Quant(int quant, int cropQuant, PlantData plant)
-    {
-        seedTotQuantity = quant;
-        seedCurrQuantity = quant;
-        cropQuantity = cropQuant;
-        this.plant = plant;
+        return plantQuantities.TryGetValue(plant, out int quantity) ? quantity : -1;
     }
 
-    public void ResetCurr()
+    public void IncreaseQuantity(PlantData plant, int plusCurr)
     {
-        seedCurrQuantity = seedTotQuantity;
-    }
-
-    public int GetCurrQuant()
-    {
-        return seedCurrQuantity;
-    }
-
-    public void IncreaseCapacity(int plusCapacity)
-    {
-        seedTotQuantity += plusCapacity;
-        seedCurrQuantity += plusCapacity;
-    }
-    public void DecreaseCurr(int minusCurr)
-    {
-        seedCurrQuantity -= minusCurr;
-    }
-
-    public bool MatchPlant(PlantData plant)
-    {
-        return plant.cropName.Equals(this.plant.cropName);
+        if (plantQuantities.ContainsKey(plant))
+        {
+            plantQuantities[plant] += plusCurr;
+        }
     }
 }

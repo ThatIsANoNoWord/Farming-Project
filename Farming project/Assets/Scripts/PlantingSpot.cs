@@ -95,6 +95,7 @@ public class PlantingSpot : Interactable
     public void Harvest()
     {
         playerController.ChangeHeld(HELD.CROP, growingPlant, growingPlant.cropSprite, growingPlant.produceCount);
+        gameManager.IncrementSeed(growingPlant);
         EmptyPlot();
     }
 
