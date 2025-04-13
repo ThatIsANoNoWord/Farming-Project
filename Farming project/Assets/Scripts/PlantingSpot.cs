@@ -68,6 +68,8 @@ public class PlantingSpot : Interactable
         }
         if (spotCurrState == SpotStates.Composting && playerHoldState == HELD.SEED)
         {
+            if (!parentPlot.GoodEnoughSoil(playerController.GetHeldPlantData().requiredSoilQuality)) return;
+
             SeedPlanted(playerController.GetHeldPlantData());
             playerController.DecrementHeld();
             return;
