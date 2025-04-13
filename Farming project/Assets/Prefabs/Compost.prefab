@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compostSprites:
-  - {fileID: 21300000, guid: e9ec5c1fbcf870d49a5a68603b97edf0, type: 3}
   - {fileID: 21300000, guid: c4178da1e2d69454b8e3e55c314e5c81, type: 3}
   - {fileID: 21300000, guid: c5cb3f83f9b47a7428955c1fb5b5f56d, type: 3}
   - {fileID: 21300000, guid: ba62def3eef184e4aa3267ef01710223, type: 3}
