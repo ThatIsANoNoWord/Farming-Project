@@ -83,7 +83,7 @@ public class CompendiumUI : UI
                 qualityText += "Excellent Land.";
                 break;
             default:
-                qualityText += "UNKOWN.";
+                qualityText += "UNKNOWN.";
                 break;
         }
         landQualityNeed.text = qualityText;

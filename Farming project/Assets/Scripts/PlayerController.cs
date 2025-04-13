@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         return heldPlantData;
     }
 
-    public void ChangeHeld(HELD newHeld, PlantData seedHeld, Sprite spriteHeld, int countHeld)
+    public void ChangeHeld(HELD newHeld, PlantData seedHeld, Sprite spriteHeld, int countHeld, bool drop=true)
     {
         // What to do if player picking up something they already have
         if (playerHolding == newHeld)
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Drop your crop
-        if (playerHolding == HELD.CROP)
+        if (playerHolding == HELD.CROP && drop)
         {
             GameObject droppedCrop = Instantiate(cropPickupPrefab, transform.position, Quaternion.identity);
             droppedCrop.GetComponent<CropPickupable>().SetPlantType(heldPlantData, holdingCount);
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Drop the compost
-        if (playerHolding == HELD.COMPOST)
+        if (playerHolding == HELD.COMPOST && drop)
         {
             GameObject droppedCrop = Instantiate(compostPickupPrefab, transform.position, Quaternion.identity);
             droppedCrop.GetComponent<CompostPickupable>().InitialSpecial(holdingCount);

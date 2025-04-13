@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
+  m_Name: Compendium
+  m_EditorClassIdentifier: 
+  title: Compendium
+  bodyContent: "Hello, my fellow farmer!\n\nHave you taken a look at the crops you
+    can grow? There should be a compendium on your farm that gives you all the details
+    about the different crops available.\n\nKnowing what to grow is a key part of
+    farming! If you're low on cash, you might want to focus on crops with high returns.
+    If you need extra compost, go for the ones that yield the most. Trust your instincts,
+    and you'll do great!\n\nBest of luck,\nFarmer Jos\xE9 Rivera"
+  isRead: 0
+  dayAppear: 7

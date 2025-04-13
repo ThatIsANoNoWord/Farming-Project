@@ -41,6 +41,7 @@ public class PlantingSpot : Interactable
                     // Do nothing
                     return;
                 case HELD.SEED:
+                    if (!parentPlot.GoodEnoughSoil(playerController.GetHeldPlantData().requiredSoilQuality)) return;
                     SeedPlanted(playerController.GetHeldPlantData());
                     playerController.DecrementHeld();
                     return;

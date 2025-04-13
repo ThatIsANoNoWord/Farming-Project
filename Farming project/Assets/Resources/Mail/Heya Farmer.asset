@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
+  m_Name: Heya Farmer
+  m_EditorClassIdentifier: 
+  title: Heya Farmer!
+  author: John Farmer
+  bodyContent: 'You might not know me, but I''m another farmer that got land as part
+    of the Act! I''ve always been advocating for this Act, and now that the Act is
+    in place, us farmers finally get the land and recognition we deserve!
+
+
+    Anyways,
+    did you know that compost can appear all around the farm? You can pick them up
+    and use them to compost on the land you own no problem! I look forward to hearing
+    of your success, fellow farmer!
+
+
+    Regards,'
+  isRead: 0
+  dayAppear: 2

@@ -8,7 +8,7 @@ public class CompostPickupable : Interactable, ITurnable
     SpriteRenderer thisSpriteRenderer;
     GameManager gameManager;
     PlayerController playerController;
-    int compostCount;
+    int compostCount = 1;
     void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -18,7 +18,6 @@ public class CompostPickupable : Interactable, ITurnable
     void Start()
     {
         thisSpriteRenderer.sprite = compostSprites[Random.Range(0, compostSprites.Length)];
-        compostCount = 1;
     }
     public void Initial(int count)
     {
@@ -40,7 +39,7 @@ public class CompostPickupable : Interactable, ITurnable
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
         base.OnInteract(playerHoldState, seedData);
-        playerController.ChangeHeld(HELD.COMPOST, null, gameManager.compostSprite, 1);
+        playerController.ChangeHeld(HELD.COMPOST, null, gameManager.compostSprite, compostCount);
         Destroy(gameObject);
     }
 
