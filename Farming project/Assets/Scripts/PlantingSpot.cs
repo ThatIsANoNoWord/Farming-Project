@@ -143,6 +143,7 @@ public class PlantingSpot : Interactable
                 return;
             case SpotStates.Harvestable:
                 EmptyPlot();
+                parentPlot.UpdatePlotQuality(3); // Deceased plants are actually good for the soil! Rip seeds though :)
                 return;
             default:
                 Debug.LogError("Impossible to reach here");
