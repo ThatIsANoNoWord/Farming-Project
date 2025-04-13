@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class Plot : MonoBehaviour, ITurnable
 {
@@ -27,6 +25,15 @@ public class Plot : MonoBehaviour, ITurnable
         inactiveObject.SetActive(!plotActive);
         plantingSpots = new List<PlantingSpot>();
         plantingSpots.AddRange(GetComponentsInChildren<PlantingSpot>(true));
+
+        // Randomize the list of plantingSpots
+        plantingSpots = plantingSpots.OrderBy(x => Random.value).ToList();
+
+        // Randomize the starting quality of the land except for Plot #2
+        // Randomize with a curve: higher values are more rare
+        float randomValue = Mathf.Pow(Random.value, 5);
+        quality = Mathf.FloorToInt(randomValue * 100);
+        if (gameObject.name == "Plot-02") quality = 30;
 
         if (!plotActive) plantingSpots.ForEach(x => x.gameObject.GetComponent<Collider2D>().enabled = false);
 
@@ -87,6 +94,21 @@ public class Plot : MonoBehaviour, ITurnable
         plotQuality = IntToSQ(quality);
 
         spriteRenderer.sprite = qualitySprites[(int)plotQuality];
+
+        // Activate spots or de-activate spots based on soil quality
+        // If a spot is empty, keep it active until harvested. This will be called whenever a plant is harvested.
+        // Min is 1 so they can still put stuff on it
+        int targetCount = Mathf.Clamp(3 * (int) plotQuality, 1, 9);
+        int activated = 0;
+
+        for (int i = 0; i < plantingSpots.Count; i++) {
+            PlantingSpot spot = plantingSpots[i];
+
+            if (activated < targetCount) spot.gameObject.SetActive(true);
+            else if (spot.IsEmpty()) spot.gameObject.SetActive(false);
+
+            activated++;
+        }
     }
 
     public SoilQuality IntToSQ(int quality)
@@ -106,9 +128,6 @@ public class Plot : MonoBehaviour, ITurnable
     public bool GoodEnoughSoil(SoilQuality requirement)
     {
         int minReq = SQToMinInt(requirement);
-        print("GROW");
-        print(quality);
-        print(minReq);
         return quality >= minReq;
     }
 

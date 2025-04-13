@@ -97,6 +97,8 @@ public class PlantingSpot : Interactable
         playerController.ChangeHeld(HELD.CROP, growingPlant, growingPlant.cropSprite, growingPlant.produceCount);
         gameManager.IncrementSeed(growingPlant);
         EmptyPlot();
+
+        parentPlot.UpdatePlotQuality(0);
     }
 
     public void EmptyPlot()
