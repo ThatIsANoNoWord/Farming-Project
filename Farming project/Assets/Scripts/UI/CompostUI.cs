@@ -28,7 +28,7 @@ public class CompostUI : UI, ITurnable
     }
     public void AllocateCrop()
     {
-        if (playerController.GetHeld() == HELD.NOTHING) {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {            
             PlantData plant = allocatedPlants.Pop();
 
             playerController.ChangeHeld(HELD.CROP, plant, plant.cropSprite, 1);

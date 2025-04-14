@@ -26,7 +26,7 @@ public class SellUI : UI, ITurnable
     public void AllocateCrop()
     {
         // Remove from compost instead of put in
-        if (playerController.GetHeld() == HELD.NOTHING) {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
             PlantData plant = allocatedPlants.Pop();
 
             playerController.ChangeHeld(HELD.CROP, plant, plant.cropSprite, 1);
