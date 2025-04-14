@@ -19,8 +19,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e6310679b818eee4a9352a6f1b70e5fc, type: 3}
   - {fileID: 21300000, guid: a3aac8054d0334b4bb828654d924ec59, type: 3}
   produceCount: 1
-  sellPrice: 30
-  buySeedPrice: 70
+  sellPrice: 25
+  buySeedPrice: 90
   compostCount: 3
   requiredSoilQuality: 1
   description: A nice, starchy and tuberous root crop that stands as one of the greatest

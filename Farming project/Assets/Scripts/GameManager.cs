@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour, ITurnable
     public TextMeshProUGUI taxText;
     public TextMeshProUGUI dayText;
     public int initialLoss;
+    public int qualityRequirement;
     public GameObject compostPickupPrefab;
     public Vector2 trCompSpawn;
     public Vector2 blCompSpawn;
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour, ITurnable
             initialLoss *= 2;
             taxText.gameObject.SetActive(false);
             bool allUnlocked = true;
-            plots.ForEach(x => allUnlocked = allUnlocked && x.plotActive);
+            plots.ForEach(x => allUnlocked = allUnlocked && x.plotActive && x.GetQuality() > qualityRequirement);
             if (allUnlocked) winCon++;
             if (winCon == 2)
             {
