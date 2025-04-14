@@ -9,6 +9,6 @@ public class MoneyUI : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public void DisplayMoney(int money)
     {
-        moneyText.text = "$" + money.ToString();
+        moneyText.text = money.ToString();
     }
 }
