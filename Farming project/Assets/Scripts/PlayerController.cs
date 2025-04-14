@@ -40,13 +40,13 @@ public class PlayerController : MonoBehaviour, ITurnable
         moveDirection = context.ReadValue<Vector2>();
         animator.SetFloat("xMov", moveDirection.x);
         animator.SetFloat("yMov", moveDirection.y);
-        Debug.Log("Move");
+        animator.SetBool("Moving", true);
     }
 
     void StopMove(InputAction.CallbackContext context)
     {
         moveDirection = Vector2.zero;
-        Debug.Log("Stop move");
+        animator.SetBool("Moving", false);
     }
 
     void Interact(InputAction.CallbackContext context)
