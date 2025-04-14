@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
             int randomIndex = Random.Range(0, randomSoundNames.Count);
             string randomSound = randomSoundNames[randomIndex];
             
-            PlaySFX(randomSound, 0.4f);
+            PlaySFX(randomSound, 0.1f);
         }
     }
 
