@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour, ITurnable
     {
         // PlantDatabase.Initialize();
         cropList = new QuantList(plantDataTypes);
-        cropList.IncreaseQuantity(plantDataTypes[0], 3);
+        cropList.IncreaseQuantity(plantDataTypes[0], 5);
+        cropList.IncreaseQuantity(plantDataTypes[1], 5);
         moneyUI = FindObjectOfType<MoneyUI>();
         plots = new List<Plot>();
         plots.AddRange(FindObjectsOfType<Plot>());

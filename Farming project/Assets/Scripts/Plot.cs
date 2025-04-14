@@ -120,13 +120,17 @@ public class Plot : MonoBehaviour, ITurnable
 
     public void Turn()
     {
-        UpdatePlotQuality(pendingOrganicMatter);
         plantingSpots.ForEach(x => x.ProcessTurn());
+        if (pendingOrganicMatter > 0 || !plotActive)
+        {
+            UpdatePlotQuality(pendingOrganicMatter);
+        } else
+        {
+            int plants = plantingSpots.Count(spot => !spot.IsEmpty());
 
-        int plants = plantingSpots.Count(spot => !spot.IsEmpty());
-
-        plants = Mathf.Clamp(plants - 1, 0, int.MaxValue);
-        UpdatePlotQuality(-plants - 1); // -1 by default for all land over time
+            plants = Mathf.Clamp(plants - 2, 0, int.MaxValue);
+            UpdatePlotQuality((-plants * 3) - 2); // -1 by default for all land over time
+        }
     }
 
     public int Prio()

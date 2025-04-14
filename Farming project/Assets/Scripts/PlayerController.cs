@@ -8,7 +8,11 @@ public class PlayerController : MonoBehaviour, ITurnable
     PlayerControl controlInput;
     public float movementSpeed;
     public float interactCooldown;
+    public float stepSfxCooldown;
+    public float maxPitchChange;
+    public float minPitchChange;
     public GameObject cropPickupPrefab;
+    AudioSource walkSource;
     public GameObject compostPickupPrefab;
     Vector2 moveDirection;
     Rigidbody2D rb;
@@ -19,6 +23,8 @@ public class PlayerController : MonoBehaviour, ITurnable
     Animator animator;
     float spamPrevention;
     int holdingCount;
+    float stepSFXcounter;
+    bool makeSound;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,9 +36,12 @@ public class PlayerController : MonoBehaviour, ITurnable
         controlInput.Player.Interact.performed += Interact;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        walkSource = GetComponent<AudioSource>();
         heldUI = FindObjectOfType<HeldUI>();
         spamPrevention = 0;
         holdingCount = 0;
+        stepSFXcounter = 0;
+        makeSound = false;
     }
 
     void MoveUpdate(InputAction.CallbackContext context)
@@ -41,12 +50,15 @@ public class PlayerController : MonoBehaviour, ITurnable
         animator.SetFloat("xMov", moveDirection.x);
         animator.SetFloat("yMov", moveDirection.y);
         animator.SetBool("Moving", true);
+        makeSound = true;
     }
 
     void StopMove(InputAction.CallbackContext context)
     {
         moveDirection = Vector2.zero;
         animator.SetBool("Moving", false);
+        if (walkSource.isPlaying) walkSource.Stop();
+        makeSound = false;
     }
 
     void Interact(InputAction.CallbackContext context)
@@ -183,7 +195,13 @@ public class PlayerController : MonoBehaviour, ITurnable
     {
         rb.velocity = moveDirection.normalized * Time.fixedDeltaTime * movementSpeed;
         spamPrevention = Mathf.Clamp(spamPrevention - Time.fixedDeltaTime, 0, float.MaxValue);
-
+        stepSFXcounter = Mathf.Clamp(stepSFXcounter -= Time.fixedDeltaTime, 0 , float.MaxValue);
+        if (makeSound && stepSFXcounter <= 0)
+        {
+            walkSource.pitch = Random.Range(minPitchChange, maxPitchChange);
+            walkSource.Play();
+            stepSFXcounter = stepSfxCooldown;
+        }
     }
 
     public void Turn()

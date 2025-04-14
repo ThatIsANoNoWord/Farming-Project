@@ -28,8 +28,7 @@ public class CompostUI : UI, ITurnable
     }
     public void AllocateCrop()
     {
-        // Remove from compost instead of put in
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+        if (playerController.GetHeld() == HELD.NOTHING) {
             PlantData plant = allocatedPlants.Pop();
 
             playerController.ChangeHeld(HELD.CROP, plant, plant.cropSprite, 1);
