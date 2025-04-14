@@ -5,25 +5,25 @@ using UnityEngine;
 public static class PlantDatabase
 {
     // This dictionary will store the plant GameObjects by their plant name
-    private static Dictionary<string, Plant> allPlants = new();
+    private static Dictionary<string, PlantData> allPlants = new();
     
     public static void Initialize()
     {
         // Load all plant data
-        Plant[] plants = Resources.LoadAll<Plant>("Plants");
+        PlantData[] plants = Resources.LoadAll<PlantData>("Plants");
 
         // Turn data into gameobjects
-        foreach (Plant plant in plants)
+        foreach (PlantData plant in plants)
         {
             Debug.Log("Loaded plant" + plant.name);
             allPlants.Add(plant.name, plant);
         }
     }
     
-    // Get the GameObject for the specified plant
-    public static Plant GetPlant(string plantName)
+    // Get the specified plant data
+    public static PlantData GetPlant(string plantName)
     {
-        return allPlants.TryGetValue(plantName, out var plantGO) ? plantGO : null;
+        return allPlants.TryGetValue(plantName, out var plant) ? plant : null;
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ public static class PlantDatabase
     /// To use the gameobject, create a new instance of it using Instantiate(plant.gameObject);
     /// </summary>
     /// <returns>A list of all plants script types.</returns>
-    public static Plant[] GetAllPlants()
+    public static PlantData[] GetAllPlants()
     {
-        return new List<Plant>(allPlants.Values).ToArray();
+        return new List<PlantData>(allPlants.Values).ToArray();
     }
 }

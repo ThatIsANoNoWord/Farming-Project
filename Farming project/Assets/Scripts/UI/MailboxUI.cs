@@ -29,6 +29,7 @@ public class MailboxUI : UI, ITurnable
     }
 
     public void CloseMailbox() {
+        AudioManager.PlaySFX("Mailbox Close", 0.1f, 2f);
         playerController.SetPlayerControl(true);
         gameObject.SetActive(false);
 
@@ -36,6 +37,9 @@ public class MailboxUI : UI, ITurnable
     }
 
     void OpenMail(MailData mail, GameObject buttonObj) {
+        // Note sound
+        AudioManager.PlaySFX("Mail", 0.5f, 1.5f);
+
         // Change mail to be "read"
         Button button = buttonObj.GetComponent<Button>();
 
@@ -102,5 +106,9 @@ public class MailboxUI : UI, ITurnable
     public int Prio()
     {
         return 1;
+    }
+
+    public override void UpdateData() {
+        AudioManager.PlaySFX("Mailbox Open", 0.5f);
     }
 }

@@ -91,6 +91,7 @@ public class PlantingSpot : Interactable
 
     void SeedPlanted(PlantData plant)
     {
+        AudioManager.PlaySFX("Plant", 0.6f);
         parentPlot.NoConuco();
         spotCurrState = SpotStates.Growing;
         growingPlant = plant;
@@ -101,6 +102,7 @@ public class PlantingSpot : Interactable
 
     public void Harvest()
     {
+        AudioManager.PlaySFX("Dig", 0.6f);
         playerController.ChangeHeld(HELD.CROP, growingPlant, growingPlant.cropSprite, growingPlant.produceCount);
         gameManager.IncrementSeed(growingPlant);
         EmptyPlot();

@@ -40,10 +40,13 @@ public class PlayerController : MonoBehaviour, ITurnable
         moveDirection = context.ReadValue<Vector2>();
         animator.SetFloat("xMov", moveDirection.x);
         animator.SetFloat("yMov", moveDirection.y);
+        Debug.Log("Move");
     }
+
     void StopMove(InputAction.CallbackContext context)
     {
         moveDirection = Vector2.zero;
+        Debug.Log("Stop move");
     }
 
     void Interact(InputAction.CallbackContext context)
@@ -180,6 +183,7 @@ public class PlayerController : MonoBehaviour, ITurnable
     {
         rb.velocity = moveDirection.normalized * Time.fixedDeltaTime * movementSpeed;
         spamPrevention = Mathf.Clamp(spamPrevention - Time.fixedDeltaTime, 0, float.MaxValue);
+
     }
 
     public void Turn()

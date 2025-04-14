@@ -9,5 +9,6 @@ public class DoorPlayerMove : Interactable
     public override void OnInteract(HELD playerHoldState, PlantData seedData)
     {
         player.transform.position = newPosition.position;
+        AudioManager.PlaySFX("Door", 0.5f, 2f);
     }
 }
