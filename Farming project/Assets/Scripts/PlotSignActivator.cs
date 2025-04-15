@@ -7,7 +7,7 @@ public class PlotSignActivator : Interactable
     SignUI UI;
     Plot parentPlot;
     PlayerController playerController;
-    private void Start()
+    private void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
         parentPlot = GetComponentInParent<Plot>();
