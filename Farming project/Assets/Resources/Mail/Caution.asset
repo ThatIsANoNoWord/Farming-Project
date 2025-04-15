@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
+  m_Name: Caution
+  m_EditorClassIdentifier: 
+  title: Word of Caution
+  bodyContent: "Mi pana,\r\n\r\nAs more and more wealthy people buy up the arable
+    land to develop on, we lose resources that can be used to feed our community.
+    Be sure to keep your eye on the prize, and maintain your focus on buying <b>back
+    the land and revitalizing it to health</b>. Don\u2019t get sidetracked by distractions.
+    The community thanks you for your efforts.\r\n\r\nFrom,\r\n<i>A concerned community
+    member</i>\r\n"
+  isRead: 0
+  dayAppear: 25

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
+  m_Name: New Farm
+  m_EditorClassIdentifier: 
+  title: New Farm
+  bodyContent: "Welcome to your new farm in <b>Puerto Rico</b>! As part of the Food
+    Sovereignty Act that has been passed through the government, you now have ownership
+    over some land to farm on! Puerto Rico\u2019s fertile soil offers a great chance
+    to grow and thrive.\r\n\r\nExpand your farm by earning money and purchasing more
+    land. If you\u2019re able to reclaim all of the land and prove that your farm
+    is stable enough to survive for a while, then we may expand the Food Sovereignty
+    Act to help more farmers across Puerto Rico. Take back the land that has been
+    cash cropped by corporations, and restore it to its former glory!\r\n\r\nGood
+    luck,\r\n\n<i>Linette D\xEDaz Mel\xE9ndez</i>\nDepartamento de Agricultura Comunitaria\r"
+  isRead: 1
+  dayAppear: 1

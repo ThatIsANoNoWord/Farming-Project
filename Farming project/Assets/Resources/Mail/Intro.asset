@@ -13,26 +13,15 @@ MonoBehaviour:
   m_Name: Intro
   m_EditorClassIdentifier: 
   title: Introduction
-  bodyContent: 'Welcome to Conuco!
-
-
-    Your goal is to obtain all land plots and
-    sustain a good farm with good quality land plots over a few tax cycles.
-
-
-    Use
-    the WASD keys to move, and SPACEBAR to interact.
-
-
-    Read the crops 101 book
-    to the west to learn more about the types of crops,
-
-    and read the soil 202
-    book to the east to learn more about composting and land quality.
-
-
-
-    Good
-    Luck and Have Fun!'
-  isRead: 0
-  dayAppear: 1
+  bodyContent: "Welcome to Conuco!\r\n\r\nHere are a couple tips to get started:\r\n1.
+    Use the WASD keys to move, and SPACEBAR to interact.\r\n2. Explore everything
+    interactable so that you understand the core mechanics of the game. \r\n3. Enter
+    the house to sleep, which passes time and causes plants to grow, get composted,
+    and get sold.\r\n4. Anything you don't use each day will rot away! Make sure
+    to use everything you have.\r\n5. Seeds are delicate, and will always be stored
+    in the seed bank. If they seem to disappear, that's probably where they went!\n6:
+    <b>WARNING</b>: Try not to bury your crops by putting compost down and creating
+    a mound over them. Those crops will be lost!\r\n\r\nGood luck and have fun,\n<i>Almighty
+    Creators</i>"
+  isRead: 1
+  dayAppear: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   title: GOBIERNO DE PUERTO RICO - TAX REMINDER
   bodyContent: "Official tax letters will no longer be sent to farmers. This does
     not mean the farm tax has ended. Please remember to continue making your payments
-    as required. Failure to do so may result in penalties.\n\nSincerely,\nLinette
-    D\xEDaz Mel\xE9ndez\nDepartamento de Agricultura Comunitaria\n"
+    as required. Failure to do so may result in penalties.\n\nSincerely,\n<i>Linette
+    D\xEDaz Mel\xE9ndez</i>\nDepartamento de Agricultura Comunitaria\n"
   isRead: 0
   dayAppear: 17

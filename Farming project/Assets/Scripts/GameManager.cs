@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour, ITurnable
         if(turnNumber % 6 == 0)
         {
             ChangeMoney(-initialLoss);
-            initialLoss *= 4;
+            initialLoss *= 2;
             taxText.gameObject.SetActive(false);
             bool allUnlocked = true;
             plots.ForEach(x => allUnlocked = allUnlocked && x.plotActive && x.GetQuality() > qualityRequirement);

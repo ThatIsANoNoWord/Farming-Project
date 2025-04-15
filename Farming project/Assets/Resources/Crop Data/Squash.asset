@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 898d82e71a71dfa4894e90120fe4945c, type: 3}
   - {fileID: 21300000, guid: b8419419f76229b4caa12e26d3a0546e, type: 3}
   produceCount: 3
-  sellPrice: 40
+  sellPrice: 4
   buySeedPrice: 70
   compostCount: 5
   requiredSoilQuality: 2

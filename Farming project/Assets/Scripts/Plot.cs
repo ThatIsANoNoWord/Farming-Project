@@ -33,7 +33,7 @@ public class Plot : MonoBehaviour, ITurnable
 
         // Randomize the starting quality of the land except for Plot #2
         // Randomize with a curve: higher values are more rare
-        float randomValue = Mathf.Pow(Random.value, 7);
+        float randomValue = Mathf.Pow(Random.value, 6);
         quality = Mathf.FloorToInt(randomValue * 100);
         if (gameObject.name == "Plot-02") quality = 30;
 

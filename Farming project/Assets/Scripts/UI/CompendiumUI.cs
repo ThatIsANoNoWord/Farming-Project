@@ -67,7 +67,7 @@ public class CompendiumUI : UI
             ((plantSeedList[index].growthStages.Length - 1) == 1 ? " Turn." : " Turns.");
         seedPrice.text = "Seed Buy Price: $" + plantSeedList[index].buySeedPrice.ToString();
         sellPrice.text = "Crop Sell Price: $" + plantSeedList[index].sellPrice.ToString();
-        compostAmount.text = $"Compost Amount: ${plantSeedList[index].compostCount}";
+        compostAmount.text = $"Compost Amount: {plantSeedList[index].compostCount}";
         cropName.text = plantSeedList[index].cropName;
         description.text = plantSeedList[index].description;
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: GOBIERNO DE PUERTO RICO - TAX REMINDER
   bodyContent: "Tax day is tomorrow. You will know how much to pay when the time
-    comes. Be prepared.\n\nSaludos,\nLinette D\xEDaz Mel\xE9ndez\nDepartamento de
-    Agricultura Comunitaria\n"
+    comes. Be prepared.\n\nSaludos,\n<i>Linette D\xEDaz Mel\xE9ndez</i>\nDepartamento
+    de Agricultura Comunitaria\n"
   isRead: 0
   dayAppear: 11

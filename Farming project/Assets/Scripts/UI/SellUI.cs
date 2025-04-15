@@ -62,7 +62,7 @@ public class SellUI : UI, ITurnable
             profit += allocatedPlants.Pop().sellPrice;
         }
         
-        gameManager.ChangeMoney(profit);
+        gameManager.ChangeMoney(profit / 2);
 
         UpdateData();
     }

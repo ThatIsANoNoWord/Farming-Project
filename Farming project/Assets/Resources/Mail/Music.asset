@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Music
   m_EditorClassIdentifier: 
   title: Beautiful Music
-  bodyContent: "Hey!\n\nI love the m\xFAsica from Puerto Rico\u2014those rhythms?
+  bodyContent: "Hey!\n\nI love the <b>m\xFAsica</b> from Puerto Rico\u2014those rhythms?
     They feel like home.\nBut sometimes, it\u2019s nice to just hear the coqu\xED
-    and the breeze through the trees.\n\nIf you ever feel the same way, you can head
-    into your house and turn the speaker off.\nIt\u2019s your space. T\xFA mandas.\n\nCu\xEDdate."
+    and listen to the birds chirp.\n\nIf you ever feel the same way, you can head
+    into your house and turn the speaker off.\nIt\u2019s your space. T\xFA mandas.\n\nCu\xEDdate.\n<i>Farmer
+    Luis Santiago</i>"
   isRead: 0
   dayAppear: 3

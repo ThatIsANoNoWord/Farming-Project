@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
+  m_Name: A Note of Appreciation
+  m_EditorClassIdentifier: 
+  title: A Note of Appreciation
+  bodyContent: "Hello!\r\n\r\nI\u2019m Julia, a member of the town council, and I
+    just wanted to reach out and thank you sincerely for your work on the farm! A
+    lot of our townspeople have struggled with food insecurity in the past because
+    everything is shipped from overseas, but your food has been of great help in
+    alleviating those issues and making sure people are fed.\r\n\r\nKeep up the great
+    work!\r\n<i>Councilwoman Julia</i>\r"
+  isRead: 0
+  dayAppear: 19

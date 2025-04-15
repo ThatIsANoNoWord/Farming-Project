@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
+  m_Name: Storm Season
+  m_EditorClassIdentifier: 
+  title: Storm Season
+  bodyContent: "Hola!\r\n\r\nAs the storm season approaches us, I\u2019m trying to
+    reach out to all of the farmers around here that are working as part of the food
+    sovereignty act and encourage them to plant more high-yield crops.\r\n\r\nBecause
+    of our food sovereignty issues here on the island, oftentimes, when we\u2019re
+    hit with hurricanes in the storm season, days and weeks can go by without shipments
+    of food. Local farms like yours are game-changing, and by planting more <b>high-yield</b>
+    crops and selling them, you give aid workers like us a chance to purchase your
+    goods and distribute them to those who need it most. Please plant accordingly!\r\r\n\r\nMuchas
+    gracias,\r\n<i>Elena Alvarez</i>\r\n"
+  isRead: 0
+  dayAppear: 40

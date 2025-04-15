@@ -84,6 +84,8 @@ public class PlantingSpot : Interactable
         if (playerHoldState == HELD.COMPOST)
         {
             parentPlot.MakeConuco(1);
+            AudioManager.PlaySFX("Dig", 0.1f);
+
             playerController.DecrementHeld();
             return;
         }
@@ -91,7 +93,7 @@ public class PlantingSpot : Interactable
 
     void SeedPlanted(PlantData plant)
     {
-        AudioManager.PlaySFX("Plant", 0.3f);
+        AudioManager.PlaySFX("Plant", 0.1f);
         parentPlot.NoConuco();
         spotCurrState = SpotStates.Growing;
         growingPlant = plant;
@@ -102,7 +104,7 @@ public class PlantingSpot : Interactable
 
     public void Harvest()
     {
-        AudioManager.PlaySFX("Dig", 0.3f);
+        AudioManager.PlaySFX("Dig", 0.1f);
         playerController.ChangeHeld(HELD.CROP, growingPlant, growingPlant.cropSprite, growingPlant.produceCount);
         gameManager.IncrementSeed(growingPlant);
         EmptyPlot();
@@ -152,7 +154,7 @@ public class PlantingSpot : Interactable
                 return;
             case SpotStates.Harvestable:
                 EmptyPlot();
-                parentPlot.UpdatePlotQuality(3); // Deceased plants are actually good for the soil! Rip seeds though :)
+                parentPlot.UpdatePlotQuality(5); // Deceased plants are actually good for the soil! Rip seeds though :)
                 return;
             default:
                 Debug.LogError("Impossible to reach here");

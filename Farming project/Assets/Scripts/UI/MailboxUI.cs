@@ -69,7 +69,7 @@ public class MailboxUI : UI, ITurnable
         foreach (var mail in mailArray) {
             mail.isRead = false;
             GameObject buttonObj = Instantiate(buttonTemplate, contentParent);
-            buttonObj.SetActive(mail.dayAppear == currentTurn);
+            buttonObj.SetActive(mail.dayAppear <= currentTurn);
 
             TextMeshProUGUI text = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
             text.text = mail.title;

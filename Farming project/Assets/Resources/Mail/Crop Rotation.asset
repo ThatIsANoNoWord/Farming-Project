@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
+  m_Name: Crop Rotation
+  m_EditorClassIdentifier: 
+  title: Crop Rotation
+  bodyContent: "A Tip from <i>Farmers\u2019 Weekly Magazine</i>:\r\n\r\nCrop rotation
+    is a great way to maintain soil quality whilst still planting crops. Because
+    different plants use up different nutrients, planting the same crops on the same
+    soil again and again can lead to nutrient imbalances in the land. Instead, rotate
+    out different crops every time you replant, so the soil has the time to regenerate
+    necessary nutrients, and your land can remain healthy and productive!\r\n"
+  isRead: 0
+  dayAppear: 38

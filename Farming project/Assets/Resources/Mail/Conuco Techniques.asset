@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2890751d4ac42b94bbb25b1d40c6, type: 3}
+  m_Name: Conuco Techniques
+  m_EditorClassIdentifier: 
+  title: Conuco Techniques
+  bodyContent: "Heya Farmer!\n\nYou might not know me, but I'm another farmer who
+    also got land as part of the Food Sovereignty Act! \n\nHere's a quick tip: you'll
+    often find materials around your farm that can be composted\u2014don't let them
+    go to waste! You can bury them in your land to improve the soil quality! I'd
+    recommend using the Conuco technique. It's a traditional Puerto Rican farming
+    method where crops are planted on small mounds that help maximize land use and
+    preserve soil fertility. \n\nI look forward to hearing about your success, fellow
+    farmer! <b>\xA1Vamos pa'lante</b>\n\n<i>Farmer Jos\xE9 Rivera</i>"
+  isRead: 0
+  dayAppear: 2
