@@ -98,6 +98,7 @@ public class SeedUI : UI
         UpdateData();
     }
 
+
     public override void UpdateData()
     {
         seedPurchImage.sprite = plantSeedList[currentSeedPurch].seedSprite;

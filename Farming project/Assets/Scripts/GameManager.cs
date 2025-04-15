@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour, ITurnable
     List<Plot> plots;
     int winCon;
 
+
     // Awake is called before anything
     void Awake()
     {
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour, ITurnable
     // Start is called before the first frame update
     void Start()
     {
-        ChangeMoney(100000);
+        ChangeMoney(0);
         turnNumber = 1;
         winCon = 0;
     }
@@ -96,7 +97,7 @@ public class GameManager : MonoBehaviour, ITurnable
         if(turnNumber % 6 == 0)
         {
             ChangeMoney(-initialLoss);
-            initialLoss *= 2;
+            initialLoss *= 4;
             taxText.gameObject.SetActive(false);
             bool allUnlocked = true;
             plots.ForEach(x => allUnlocked = allUnlocked && x.plotActive && x.GetQuality() > qualityRequirement);

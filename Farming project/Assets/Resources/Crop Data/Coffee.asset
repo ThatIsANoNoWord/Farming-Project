@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d9aab88743d65f94aa3e3f870ff68958, type: 3}
   produceCount: 8
   sellPrice: 100
-  buySeedPrice: 300
+  buySeedPrice: 500
   compostCount: 5
   requiredSoilQuality: 3
   description: Known primarily from their seeds, which can be processed into a very

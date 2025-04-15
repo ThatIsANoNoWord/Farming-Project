@@ -26,6 +26,11 @@ public class Plot : MonoBehaviour, ITurnable
         plantingSpots = new List<PlantingSpot>();
         plantingSpots.AddRange(GetComponentsInChildren<PlantingSpot>(true));
 
+        if (!plotActive)
+        {
+            plantingSpots.ForEach(x => x.gameObject.GetComponent<Collider2D>().enabled = false);
+        }
+
         // Randomize the starting quality of the land except for Plot #2
         // Randomize with a curve: higher values are more rare
         float randomValue = Mathf.Pow(Random.value, 7);

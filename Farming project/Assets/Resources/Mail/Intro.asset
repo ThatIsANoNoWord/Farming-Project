@@ -13,6 +13,26 @@ MonoBehaviour:
   m_Name: Intro
   m_EditorClassIdentifier: 
   title: Introduction
-  bodyContent: Temporary introductory mail
-  isRead: 1
+  bodyContent: 'Welcome to Conuco!
+
+
+    Your goal is to obtain all land plots and
+    sustain a good farm with good quality land plots over a few tax cycles.
+
+
+    Use
+    the WASD keys to move, and SPACEBAR to interact.
+
+
+    Read the crops 101 book
+    to the west to learn more about the types of crops,
+
+    and read the soil 202
+    book to the east to learn more about composting and land quality.
+
+
+
+    Good
+    Luck and Have Fun!'
+  isRead: 0
   dayAppear: 1

@@ -54,6 +54,7 @@ public class SellUI : UI, ITurnable
         allocatedQuant.text = allocatedPlants.Count.ToString();
     }
 
+
     public void Turn()
     {
         int profit = 0;

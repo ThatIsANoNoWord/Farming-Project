@@ -23,6 +23,7 @@ public class CompendiumUI : UI
     GameManager gameManager;
     PlantData[] plantSeedList;
     int index;
+
     private void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();

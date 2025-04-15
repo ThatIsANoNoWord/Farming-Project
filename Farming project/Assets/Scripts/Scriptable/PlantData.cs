@@ -16,6 +16,7 @@ public class PlantData : ScriptableObject
     [TextArea]
     public string description;
 
+
     public override string ToString()
     {
         return cropName + ": sell for " + sellPrice + " and buys seeds for " + buySeedPrice;

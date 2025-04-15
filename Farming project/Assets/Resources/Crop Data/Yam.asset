@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8b92404a48bbd984792eb7507deb0c06, type: 3}
   produceCount: 3
   sellPrice: 5
-  buySeedPrice: 70
+  buySeedPrice: 40
   compostCount: 3
   requiredSoilQuality: 1
   description: Though yams are tuber crops that come from the starchy roots of the
