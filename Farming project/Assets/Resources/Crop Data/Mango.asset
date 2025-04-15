@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a4244dc603d46a2409243f29085f91a1, type: 3}
   produceCount: 1
   sellPrice: 360
-  buySeedPrice: 600
+  buySeedPrice: 500
   compostCount: 10
   requiredSoilQuality: 3
   description: 'What did the man do?

@@ -18,10 +18,10 @@ MonoBehaviour:
   growthStages:
   - {fileID: 21300000, guid: 4fb12027f090893419145732853b1a9c, type: 3}
   - {fileID: 21300000, guid: d9aab88743d65f94aa3e3f870ff68958, type: 3}
-  produceCount: 7
-  sellPrice: 15
-  buySeedPrice: 400
-  compostCount: 4
+  produceCount: 6
+  sellPrice: 20
+  buySeedPrice: 150
+  compostCount: 6
   requiredSoilQuality: 3
   description: Known primarily from their seeds, which can be processed into a very
     popular drink that contains the stimulant caffeine.
